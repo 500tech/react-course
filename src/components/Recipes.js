@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { toggleRecipe } from '../actions/recipes';
+
 import Recipe from './Recipe';
 
 const Recipes = ({ recipes, toggle }) => (
@@ -14,11 +16,8 @@ Recipes.propTypes = {
   toggle: PropTypes.func.isRequired
 };
 
-const mapStateToProps = (state) => {
-  return {
-    recipes: state.recipes,
-    toggle: () => console.log("Toggle")
-  }
-};
+const mapStateToProps = (state) => ({
+  recipes: state.recipes
+});
 
-export default connect(mapStateToProps)(Recipes);
+export default connect(mapStateToProps, { toggle: toggleRecipe })(Recipes);

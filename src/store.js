@@ -18,6 +18,15 @@ const reducer = (state, action) => {
         recipes: newRecipes
       });
 
+    case 'TOGGLE_RECIPE':
+      const updatedRecipes = state.recipes.map(recipe => recipe.id !== action.id
+        ? recipe
+        : Object.assign({}, recipe, { favorite: !recipe.favorite }));
+
+      return Object.assign({}, state, {
+        recipes: updatedRecipes
+      });
+
     default:
       return state;
   }
