@@ -1,9 +1,7 @@
 import React from 'react';
 import Recipes from './Recipes';
 import AddRecipe from './AddRecipe';
-
-let id = 0;
-const getID = () => id += 1;
+import { getID } from '../lib/utils';
 
 class App extends React.Component {
   constructor() {
