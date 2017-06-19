@@ -1,8 +1,9 @@
 import * as consts from '../consts/action-types';
 
-export const addRecipe = (title) => ({
+export const addRecipe = (title, description) => ({
   type: consts.ADD_RECIPE,
-  title
+  title,
+  description
 });
 
 export const toggleRecipe = (id) => ({
