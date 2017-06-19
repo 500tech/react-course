@@ -4,17 +4,20 @@ import './index.css';
 
 const recipes = ['Waffles', 'Omelette'];
 
-const Recipe = () => (
-  <li>Waffel</li>
+const Recipe = ({ recipe }) => (
+  <li>{ recipe }</li>
+);
+
+const Recipes = ({ recipes }) => (
+  <ul>
+    { recipes.map(recipe => <Recipe key={ recipe } recipe={ recipe } /> )}
+  </ul>
 );
 
 const App = () => (
   <div>
     <h1>Recipes:</h1>
-    <ul>
-      <Recipe />
-      <Recipe />
-    </ul>
+    <Recipes recipes={ recipes } />
   </div>
 );
 
