@@ -9,8 +9,8 @@ class App extends React.Component {
 
     this.state = {
       recipes: [
-        { id: getID(), title: 'Waffles' },
-        { id: getID(), title: 'Omelette' }
+        { id: getID(), title: 'Waffles', favorite: true },
+        { id: getID(), title: 'Omelette', favorite: false }
       ]
     };
   }
@@ -18,7 +18,8 @@ class App extends React.Component {
   addRecipe = (title) => {
     const newRecipe = {
       id: getID(),
-      title
+      title,
+      favorite: false
     };
 
     const newRecipes = this.state.recipes.concat(newRecipe);
