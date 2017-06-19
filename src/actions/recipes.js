@@ -4,8 +4,8 @@ export const addRecipe = (id, title, description) => ({
   type: consts.ADD_RECIPE,
   payload: {
     id,
-    title,
-    description
+    title: title.trim(),
+    description: description.trim()
   }
 });
 

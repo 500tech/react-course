@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`actions should create an action to add a recipe with snapshot 1`] = `
+Object {
+  "payload": Object {
+    "description": "desc",
+    "id": 1,
+    "title": "title",
+  },
+  "type": "ADD_RECIPE",
+}
+`;
+
+exports[`actions should create an action to add a recipe with trimmed title 1`] = `
+Object {
+  "payload": Object {
+    "description": "trimmed",
+    "id": 1,
+    "title": "title",
+  },
+  "type": "ADD_RECIPE",
+}
+`;
+
+exports[`actions should create fetch action 1`] = `
+Object {
+  "payload": Object {
+    "success": "SET_RECIPES",
+    "url": "recipes.json",
+  },
+  "type": "API",
+}
+`;

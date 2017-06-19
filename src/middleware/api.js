@@ -1,5 +1,5 @@
 import { BASE_URL } from '../consts/env';
-import { API } from '../consts/action-types';
+import { API, API_ERROR } from '../consts/action-types';
 
 const apiMiddleware = ({ dispatch }) => next => action => {
   if (action.type !== API) {
@@ -11,7 +11,7 @@ const apiMiddleware = ({ dispatch }) => next => action => {
   return fetch(BASE_URL + url)
     .then(response => response.json())
     .then(payload => dispatch({ type: success, payload }))
-    .catch(error => console.log(`Network error:`, error));
+    .catch(error => dispatch({ type: API_ERROR, error }));
 };
 
 export default apiMiddleware;

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchUser } from '../actions/user';
 
-const User = ({ user, fetchUser }) => (
+export const User = ({ user, fetchUser }) => (
   <span onClick={ fetchUser }>{ user.name }</span>
 );
 
