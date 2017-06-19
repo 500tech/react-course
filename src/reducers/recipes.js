@@ -5,17 +5,14 @@ const initialState = [];
 const reducer = (recipes = initialState, action) => {
   switch (action.type) {
     case consts.ADD_RECIPE:
-      const newRecipe = {
-        id: action.id,
-        title: action.title,
-        description: action.description,
+      const newRecipe = Object.assign({}, action.payload, {
         favorite: false
-      };
+      });
 
       return recipes.concat(newRecipe);
 
     case consts.TOGGLE_RECIPE:
-      return recipes.map(recipe => recipe.id !== action.id
+      return recipes.map(recipe => recipe.id !== action.payload
         ? recipe
         : Object.assign({}, recipe, { favorite: !recipe.favorite }));
 
