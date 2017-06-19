@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class AddRecipe extends React.Component {
   onSubmit(e) {
@@ -18,5 +19,9 @@ class AddRecipe extends React.Component {
     );
   }
 }
+
+AddRecipe.propTypes = {
+  addRecipe: PropTypes.func.isRequired
+};
 
 export default AddRecipe;
