@@ -11,3 +11,11 @@ export const toggleRecipe = (id) => ({
   type: consts.TOGGLE_RECIPE,
   id
 });
+
+export const fetchRecipes = () => ({
+  type: consts.API,
+  payload: {
+    url: 'recipes.json',
+    success: consts.SET_RECIPES
+  }
+});

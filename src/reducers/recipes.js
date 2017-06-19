@@ -1,11 +1,6 @@
 import * as consts from '../consts/action-types';
-import { getID } from '../lib/utils';
 
-const initialState = [
-  { id: getID(), title: 'Waffles', favorite: false, description: 'Tasty and belgian' },
-  { id: getID(), title: 'Omelette', favorite: true, description: 'Easy egg work' },
-  { id: getID(), title: 'Dog Food', favorite: true, description: 'Not for humans' }
-];
+const initialState = [];
 
 const reducer = (recipes = initialState, action) => {
   switch (action.type) {
@@ -23,6 +18,9 @@ const reducer = (recipes = initialState, action) => {
       return recipes.map(recipe => recipe.id !== action.id
         ? recipe
         : Object.assign({}, recipe, { favorite: !recipe.favorite }));
+
+    case consts.SET_RECIPES:
+      return action.payload;
 
     default:
       return recipes;
