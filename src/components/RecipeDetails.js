@@ -19,7 +19,7 @@ const RecipeDetailsWrapper = ({ recipe }) =>
     : <h3>Not found</h3>;
 
 const mapStateToProps = (state, ownProps) => {
-  const id = parseInt(ownProps.match.params.id);
+  const id = parseInt(ownProps.match.params.id, 10);
 
   return {
     recipe: state.recipes.find(recipe => recipe.id === id)

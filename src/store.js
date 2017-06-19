@@ -8,7 +8,7 @@ const reducer = (state, action) => {
   switch (action.type) {
     case consts.ADD_RECIPE:
       const newRecipe = {
-        id: getID(),
+        id: action.id,
         title: action.title,
         description: action.description,
         favorite: false

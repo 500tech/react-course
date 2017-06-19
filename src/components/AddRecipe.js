@@ -2,15 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addRecipe } from '../actions/recipes';
+import { withRouter } from 'react-router-dom';
+import { getID } from '../lib/utils';
 
 class AddRecipe extends React.Component {
   onSubmit(e) {
     e.preventDefault();
 
-    this.props.addRecipe(this.title.value, this.description.value);
+    const id = getID();
+
+    this.props.addRecipe(id, this.title.value, this.description.value);
 
     this.title.value = '';
     this.description.value = '';
+
+    this.props.history.push(`/recipe/${ id }`);
   }
 
   render() {
@@ -28,4 +34,4 @@ AddRecipe.propTypes = {
   addRecipe: PropTypes.func.isRequired
 };
 
-export default connect(null, { addRecipe })(AddRecipe);
+export default withRouter(connect(null, { addRecipe })(AddRecipe));
