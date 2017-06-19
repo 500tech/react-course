@@ -27,11 +27,16 @@ class App extends React.Component {
     this.setState({ recipes: newRecipes });
   };
 
+  toggleRecipes = (recipe) => {
+    recipe.favorite = !recipe.favorite;
+    this.forceUpdate();
+  };
+
   render() {
     return (
       <div>
         <h1>Recipes:</h1>
-        <Recipes recipes={ this.state.recipes } />
+        <Recipes recipes={ this.state.recipes } toggle={ this.toggleRecipes } />
         <AddRecipe addRecipe={ this.addRecipe } />
       </div>
     );
