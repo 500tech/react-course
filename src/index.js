@@ -2,7 +2,11 @@ import React from 'react';
 import { render } from 'react-dom';
 import './index.css';
 
+const App = () => (
+  <h1>Hello!</h1>
+);
+
 render(
-  React.createElement('div', null, 'Hello world!'),
+  <App/>,
   document.getElementById('root')
 );
