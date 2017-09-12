@@ -1,16 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
 import './index.css';
+import Recipes from './components/Recipes';
 
-const Recipe = ({ recipe }) => (
-  <li>{ recipe }</li>
-);
-
-const Recipes = ({ recipes }) => (
-  <ul>
-    { recipes.map(recipe => <Recipe key={ recipe } recipe={ recipe } /> )}
-  </ul>
-);
 
 class AddRecipe extends React.Component {
   onSubmit(e) {
