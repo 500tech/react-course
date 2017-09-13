@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Recipe from './Recipe';
 import { connect } from 'react-redux';
 
-const Recipes = ({ recipes = [], toggle }) => (
+const Recipes = ({ recipes, toggle }) => (
   <ul>
     { recipes.map(recipe => <Recipe key={ recipe.id } recipe={ recipe } toggle={ toggle } /> )}
   </ul>
@@ -16,7 +16,10 @@ Recipes.propTypes = {
 
 const mapStateToProps = (state) => ({
   recipes: state.recipes,
-  toggle: () => console.log('Foo bar')
 });
 
-export default connect(mapStateToProps)(Recipes);
+const mapDispatchToProps = (dispatch) => ({
+  toggle: (recipe) => dispatch({ type: 'TOGGLE_RECIPE', id: recipe.id })
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Recipes);
