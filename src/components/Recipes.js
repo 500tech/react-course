@@ -14,13 +14,9 @@ Recipes.propTypes = {
   toggle: PropTypes.func.isRequired
 };
 
-// New code
-
-const mapStateToProps = (state) => {
-  return {
-    recipes: state.recipes,
-    toggle: () => console.log('Foo bar')
-  };
-};
+const mapStateToProps = (state) => ({
+  recipes: state.recipes,
+  toggle: () => console.log('Foo bar')
+});
 
 export default connect(mapStateToProps)(Recipes);
