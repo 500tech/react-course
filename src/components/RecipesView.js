@@ -4,16 +4,6 @@ import AddRecipe from './AddRecipe';
 import { getID } from '../lib/utils';
 
 class RecipesView extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      recipes: [
-        { id: getID(), title: 'Waffles', favorite: true },
-        { id: getID(), title: 'Omelette', favorite: false }
-      ]
-    };
-  }
 
   addRecipe = (title) => {
     const newRecipe = {
@@ -27,16 +17,11 @@ class RecipesView extends React.Component {
     this.setState({ recipes: newRecipes });
   };
 
-  toggleRecipes = (recipe) => {
-    recipe.favorite = !recipe.favorite;
-    this.forceUpdate();
-  };
-
   render() {
     return (
       <div className="main">
         <div className="pane">
-          <Recipes recipes={ this.state.recipes } toggle={ this.toggleRecipes }/>
+          <Recipes />
         </div>
 
         <div className="pane">
