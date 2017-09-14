@@ -12,7 +12,6 @@ const RecipesView = () => (
     <div className="pane">
       <AddRecipe />
     </div>
-
   </div>
 );
 
