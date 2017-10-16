@@ -31,5 +31,5 @@ More about the course: [http://react.courses.500tech.com/](http://react.courses.
     npm install
     npm start
 
-Open chrome and go to: [http://localhost:8000](http://localhost:8000).
+Open chrome and go to: [http://localhost:3000](http://localhost:3000).
 You should see **"Hello!"**
