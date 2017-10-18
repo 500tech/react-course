@@ -15,6 +15,12 @@ const reducer = (state, action) => {
   console.log('ACTION: ' + action.type, action);
 
   switch(action.type) {
+    case 'TOGGLE':
+      return Object.assign({}, state, {
+        recipes: state.recipes.map(recipe => recipe.id !== action.id
+          ? recipe
+          : Object.assign({}, recipe, { favorite: !recipe.favorite }))
+      })
     default:
       return state;
   }
