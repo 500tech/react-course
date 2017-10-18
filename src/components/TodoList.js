@@ -1,31 +1,18 @@
 import React from 'react';
 import Todo from './Todo';
+import PropTypes from 'prop-types';
 
-class TodoList extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      todos: [
-        { title: 'Convert to JSX', completed: true },
-        { title: 'Divide into Components', completed: true },
-        { title: 'Add state', completed: false }
-      ]
-    };
-  }
-  
-  render() {
-    return (
-      <ul className="todo-list">
-        {
-          this.state.todos.map(todo => <Todo key={ todo.title } todo={ todo } />)
-        }
-      </ul>
-    );
-  }
-}
+const TodoList = ({ todos, onToggle }) => (
+  <ul className="todo-list">
+    {
+      todos.map(todo => <Todo key={todo.title} todo={todo} onToggle={ onToggle }/>)
+    }
+  </ul>
+);
 
 TodoList.propTypes = {
+  todos: PropTypes.array.isRequired,
+  onToggle: PropTypes.func.isRequired
 };
 
 export default TodoList;
