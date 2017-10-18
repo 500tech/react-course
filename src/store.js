@@ -15,6 +15,14 @@ const reducer = (state, action) => {
   console.log('ACTION: ' + action.type, action);
 
   switch(action.type) {
+    case 'ADD_RECIPE':
+      const newRecipe = {
+        id: getID(), title: action.title, favorite: false
+      };
+
+      return Object.assign({}, state, {
+        recipes: state.recipes.concat(newRecipe)
+      });
     case 'TOGGLE':
       return Object.assign({}, state, {
         recipes: state.recipes.map(recipe => recipe.id !== action.id
