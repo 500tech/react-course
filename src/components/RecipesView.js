@@ -36,7 +36,7 @@ class RecipesView extends React.Component {
     return (
       <div className="main">
         <div className="pane">
-          <Recipes recipes={ this.state.recipes } toggle={ this.toggleRecipes }/>
+          <Recipes  toggle={ this.toggleRecipes }/>
         </div>
 
         <div className="pane">
