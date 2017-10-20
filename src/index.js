@@ -47,6 +47,6 @@ class App extends React.Component {
 }
 
 render(
-  <App />a,
+  <App />,
   document.getElementById('root')
 );
