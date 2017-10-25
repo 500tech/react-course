@@ -5,20 +5,10 @@ import Footer from './components/Footer';
 import InnerHeader from './components/InnerHeader';
 import InnerFooter from './components/InnerFooter';
 import Main from './components/Main';
+import { Provider } from 'react-redux';
+import store from './store';
 
 class App extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      todos: [
-        { title: 'Convert to JSX', completed: true },
-        { title: 'Divide into Components', completed: true },
-        { title: 'Add state', completed: false }
-      ]
-    };
-  }
-
   handleAdd = (title) => {
 
     const newTodo = {
@@ -42,7 +32,7 @@ class App extends React.Component {
       <div>
         <section className="todoapp">
           <InnerHeader onAdd={ this.handleAdd } />
-          <Main todos={ this.state.todos } onToggle={ this.handleToggle }/>
+          <Main onToggle={ this.handleToggle }/>
           <InnerFooter/>
         </section>
 
@@ -53,6 +43,8 @@ class App extends React.Component {
 }
 
 render(
-  <App/>,
+  <Provider store={ store }>
+    <App/>
+  </Provider>,
   document.getElementById('root')
 );
