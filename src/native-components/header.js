@@ -15,13 +15,15 @@ const Header = () => (
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: 100,
+    height: 70,
     justifyContent: 'center',
     alignItems: 'center',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    backgroundColor: '#0e749a'
   },
   headerTitle: {
-    marginRight: 20
+    marginRight: 20,
+    color: 'white'
   }
 });
 

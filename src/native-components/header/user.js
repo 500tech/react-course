@@ -20,7 +20,8 @@ User.propTypes = {
 const styles = StyleSheet.create({
   username: {
     fontSize: 14,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    color: 'white'
   }
 });
 
