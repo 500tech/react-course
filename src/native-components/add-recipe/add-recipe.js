@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ScrollView, View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import { ScrollView, View, Text, TextInput, StyleSheet, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux';
 import { addRecipe } from '../../actions/recipes';
 import { getID } from '../../lib/utils';
@@ -29,7 +29,7 @@ class AddRecipe extends React.Component {
   render() {
     return (
       <ScrollView contentContainerStyle={ styles.container }>
-        <View style={ styles.inputWrapper }>
+        <KeyboardAvoidingView style={ styles.inputWrapper }>
           <View style={ styles.inputContainer }>
             <Text style={ styles.inputLabel }>Title</Text>
 
@@ -45,13 +45,13 @@ class AddRecipe extends React.Component {
             <Text style={ styles.inputLabel }>Description</Text>
 
             <TextInput style={ [styles.textInput, { minHeight: 60 }] }
+                       value={this.state.description}
                        onChangeText={text => this.setState({ description: text })}
                        placeholder="Enter recipe description..."
-                       returnKeyType="done"
                        multiline
                        autoGrow/>
           </View>
-        </View>
+        </KeyboardAvoidingView>
 
         <TouchableOpacity style={ styles.button }
                           onPress={ this.onSubmit.bind(this) }>

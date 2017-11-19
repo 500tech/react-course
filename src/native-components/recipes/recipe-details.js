@@ -1,15 +1,15 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { toggleRecipe } from '../../actions/recipes';
 //import ToggleBox from './ToggleBox';
 
 const RecipeDetails = ({ recipe, toggleRecipe }) => (
-  <View>
-    <Text>{ recipe.title }</Text>
+  <View style={ styles.container }>
+    <Text style={ styles.title }>{ recipe.title }</Text>
 
-    <Text>{ recipe.description }</Text>
+    <Text style={ styles.description }>{ recipe.description }</Text>
   </View>
 );
 
@@ -17,6 +17,22 @@ RecipeDetails.propTypes = {
   recipe: PropTypes.object.isRequired,
   toggleRecipe: PropTypes.func.isRequired
 };
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 20
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    width: '100%',
+    textAlign: 'center',
+    marginBottom: 20
+  },
+  description: {
+    fontSize: 14
+  }
+});
 
 class RecipeDetailsWrapper extends React.Component {
   render() {
