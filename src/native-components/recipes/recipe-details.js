@@ -2,14 +2,18 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+
 import { toggleRecipe } from '../../actions/recipes';
-//import ToggleBox from './ToggleBox';
+
+import ToggleBox from 'native/recipes/toggle-box';
 
 const RecipeDetails = ({ recipe, toggleRecipe }) => (
   <View style={ styles.container }>
     <Text style={ styles.title }>{ recipe.title }</Text>
 
     <Text style={ styles.description }>{ recipe.description }</Text>
+
+    <ToggleBox title="favorite" toggle={ () => toggleRecipe(recipe.id) } active={ recipe.favorite }/>
   </View>
 );
 
