@@ -12,7 +12,9 @@ const Tabs = TabNavigator({
 
 const Root = StackNavigator({
   Tabs: { screen: Tabs, navigationOptions: { header: null } },
-  RecipeDetails: { screen: RecipeDetails }
+  RecipeDetails: { screen: RecipeDetails },
+}, {
+  headerMode: 'none'
 });
 
 export default Root;

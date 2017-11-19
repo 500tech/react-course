@@ -7,6 +7,8 @@ import { toggleRecipe } from '../../actions/recipes';
 
 const RecipeDetails = ({ recipe, toggleRecipe }) => (
   <View>
+    <Text>{ recipe.title }</Text>
+
     <Text>{ recipe.description }</Text>
   </View>
 );
@@ -17,10 +19,6 @@ RecipeDetails.propTypes = {
 };
 
 class RecipeDetailsWrapper extends React.Component {
-  static navigationOptions = ({ navigation, recipe }) => ({
-    title: navigation.state.params.title
-  });
-
   render() {
     const { recipe } = this.props;
 
