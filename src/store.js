@@ -9,6 +9,9 @@ const initialState = {
 };
 
 const reducer = (state, action) => {
+
+  console.log('ACTION ' + action.type, action);
+
   switch(action.type) {
     case 'ADD':
       return {
@@ -18,6 +21,13 @@ const reducer = (state, action) => {
           favorite: false
         })
       };
+
+    case 'TOGGLE':
+      return Object.assign({}, state, {
+        recipes: state.recipes.map(r => r.id !== action.id
+          ? r
+          : Object.assign({}, r, { favorite: !r.favorite }))
+      });
 
     default:
       return state;

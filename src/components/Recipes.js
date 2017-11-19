@@ -19,8 +19,11 @@ Recipes.propTypes = {
 // Wrapper code
 
 const mapStateToProps = (state) => ({
-  recipes: state.recipes,
-  toggle: () => console.log('Hey')
+  recipes: state.recipes
 });
 
-export default connect(mapStateToProps)(Recipes);
+const mapDispatchToProps = dispatch => ({
+  toggle: (recipe) => dispatch({ type: 'TOGGLE', id: recipe.id })
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Recipes);
