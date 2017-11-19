@@ -36,13 +36,8 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10
   },
-  buttonsContainer: {
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center'
-  },
   refreshButton: {
+    marginTop: 10,
     height: 50,
     width: 200,
     borderRadius: 5,

@@ -1,22 +1,114 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import PropTypes from 'prop-types';
+import { ScrollView, View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux';
+import { addRecipe } from '../../actions/recipes';
+import { getID } from '../../lib/utils';
 
-class AddRecipes extends React.Component {
+class AddRecipe extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      title: '',
+      description: ''
+    }
+  }
+
+  onSubmit() {
+    const id = getID();
+
+    this.props.addRecipe(id, this.state.title, this.state.description);
+
+    this.setState({
+      title: '',
+      description: ''
+    })
+  }
+
   render() {
     return (
-      <View style={ styles.container }>
-        <Text>Add Recipe</Text>
-      </View>
-    )
+      <ScrollView contentContainerStyle={ styles.container }>
+        <View style={ styles.inputWrapper }>
+          <View style={ styles.inputContainer }>
+            <Text style={ styles.inputLabel }>Title</Text>
+
+            <TextInput placeholder="Enter recipe title..."
+                       value={this.state.title}
+                       onChangeText={text => this.setState({ title: text })}
+                       style={ [styles.textInput, { height: 40 }] }
+                       returnKeyType="done"
+                       numOfLines={ 1 }/>
+          </View>
+
+          <View style={ styles.inputContainer }>
+            <Text style={ styles.inputLabel }>Description</Text>
+
+            <TextInput style={ [styles.textInput, { minHeight: 60 }] }
+                       onChangeText={text => this.setState({ description: text })}
+                       placeholder="Enter recipe description..."
+                       returnKeyType="done"
+                       multiline
+                       autoGrow/>
+          </View>
+        </View>
+
+        <TouchableOpacity style={ styles.button }
+                          onPress={ this.onSubmit.bind(this) }>
+          <Text style={ styles.buttonLabel }>Add</Text>
+        </TouchableOpacity>
+      </ScrollView>
+    );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 20
+  },
+  inputWrapper: {
+    width: '100%'
+  },
+  inputContainer: {
+    marginBottom: 30,
+    width: '100%'
+  },
+  inputLabel: {
+    color: '#0e749a',
+    fontSize: 14,
+    fontWeight: 'bold',
+    marginBottom: 10
+  },
+  textInput: {
+    borderColor: '#0e749a',
+    borderWidth: 1,
+    borderRadius: 4,
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingTop: 5,
+    paddingBottom: 5,
+    width: '100%',
+    fontSize: 14
+  },
+  button: {
+    height: 50,
+    width: 200,
+    borderRadius: 5,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: '#0e749a'
+  },
+  buttonLabel: {
+    fontSize: 14,
+    color: 'white'
   }
 });
 
-export default AddRecipes;
+AddRecipe.propTypes = {
+  addRecipe: PropTypes.func.isRequired
+};
+
+export default connect(null, { addRecipe })(AddRecipe);
