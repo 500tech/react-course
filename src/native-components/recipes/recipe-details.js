@@ -13,7 +13,7 @@ const RecipeDetails = ({ recipe, toggleRecipe }) => (
 
     <Text style={ styles.description }>{ recipe.description }</Text>
 
-    <ToggleBox title="favorite" toggle={ () => toggleRecipe(recipe.id) } active={ recipe.favorite }/>
+    <ToggleBox title="Favorite" toggle={ () => toggleRecipe(recipe.id) } active={ recipe.favorite }/>
   </View>
 );
 
@@ -24,7 +24,8 @@ RecipeDetails.propTypes = {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20
+    padding: 20,
+    alignItems: 'center'
   },
   title: {
     fontSize: 20,
@@ -34,7 +35,8 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   description: {
-    fontSize: 14
+    fontSize: 14,
+    marginBottom: 50
   }
 });
 
