@@ -1,9 +1,11 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { withNavigation } from 'react-navigation';
 
-const Recipe = ({ recipe }) => {
+const Recipe = ({ recipe, navigation }) => {
   return (
-    <TouchableOpacity style={ styles.container }>
+    <TouchableOpacity style={ styles.container }
+                      onPress={ () => navigation.navigate('RecipeDetails', recipe) }>
       <Text style={ styles.title }>
         { recipe.title }
         </Text>
@@ -28,4 +30,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Recipe;
+export default withNavigation(Recipe);
