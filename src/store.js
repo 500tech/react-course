@@ -14,20 +14,8 @@ const reducer = (state, action) => {
 
   switch(action.type) {
     case 'ADD':
-      return {
-        recipes: state.recipes.concat({
-          id: getID(),
-          title: action.title,
-          favorite: false
-        })
-      };
 
     case 'TOGGLE':
-      return Object.assign({}, state, {
-        recipes: state.recipes.map(r => r.id !== action.id
-          ? r
-          : Object.assign({}, r, { favorite: !r.favorite }))
-      });
 
     default:
       return state;

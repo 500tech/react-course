@@ -15,9 +15,6 @@ Recipes.propTypes = {
 };
 
 
-
-// Wrapper code
-
 const mapStateToProps = (state) => ({
   recipes: state.recipes
 });
