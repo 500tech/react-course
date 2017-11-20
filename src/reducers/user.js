@@ -1,8 +1,6 @@
 import * as consts from '../consts/action-types';
 
-const initialState = {
-  name: 'Unknown'
-};
+const initialState = null;
 
 const reducer = (user = initialState, action) => {
   switch (action.type) {

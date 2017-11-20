@@ -1,20 +1,27 @@
 import React from 'react';
-import { TabNavigator, StackNavigator } from "react-navigation";
+import { connect } from 'react-redux';
+import { View, StyleSheet, Platform } from 'react-native';
 
-import Recipes from 'native/recipes/recipes';
-import AddRecipe from 'native/add-recipe/add-recipe';
-import RecipeDetails from 'native/recipes/recipe-details';
+import Home from 'native/home';
+import Login from 'native/login';
 
-const Tabs = TabNavigator({
-  Recipes: { screen: Recipes, title: 'Recipes' },
-  AddRecipe: { screen: AddRecipe, title: 'Add Recipes' }
+const Root = ({ user }) => (
+  <View style={ styles.appContainer }>
+    { user ? <Home/> : <Login/> }
+  </View>
+);
+
+const styles = StyleSheet.create({
+  appContainer: {
+    height: '100%',
+    width: '100%',
+    flex: 1,
+    paddingTop: Platform.OS === 'ios' ? 20 : 0
+  }
 });
 
-const Root = StackNavigator({
-  Tabs: { screen: Tabs, navigationOptions: { header: null } },
-  RecipeDetails: { screen: RecipeDetails },
-}, {
-  headerMode: 'screen'
+const mapStateToProps = (state) => ({
+  user: state.user
 });
 
-export default Root;
+export default connect(mapStateToProps)(Root);
