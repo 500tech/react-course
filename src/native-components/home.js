@@ -4,11 +4,13 @@ import { View, StyleSheet } from 'react-native';
 
 import Recipes from 'native/recipes/recipes';
 import RecipeDetails from 'native/recipes/recipe-details';
+import AddRecipe from 'native/add-recipe/add-recipe';
 import Header from 'native/header';
 
 const Home = StackNavigator({
   Recipes: { screen: Recipes, navigationOptions: { header: null } },
   RecipeDetails: { screen: RecipeDetails },
+  AddRecipe: { screen: AddRecipe }
 }, { headerMode: 'screen' });
 
 const HomeWrapper = () => (
