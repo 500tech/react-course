@@ -1,20 +1,28 @@
 import React from 'react';
-import { TabNavigator, StackNavigator } from "react-navigation";
+import { StackNavigator } from "react-navigation";
+import { View, StyleSheet } from 'react-native';
 
 import Recipes from 'native/recipes/recipes';
-import AddRecipe from 'native/add-recipe/add-recipe';
 import RecipeDetails from 'native/recipes/recipe-details';
-
-const Tabs = TabNavigator({
-  Recipes: { screen: Recipes, title: 'Recipes' },
-  AddRecipe: { screen: AddRecipe, title: 'Add Recipes' }
-});
+import Header from 'native/header';
 
 const Home = StackNavigator({
-  Tabs: { screen: Tabs, navigationOptions: { header: null } },
+  Recipes: { screen: Recipes, navigationOptions: { header: null } },
   RecipeDetails: { screen: RecipeDetails },
-}, {
-  headerMode: 'screen'
+}, { headerMode: 'screen' });
+
+const HomeWrapper = () => (
+  <View style={ styles.container }>
+    <Header/>
+
+    <Home/>
+  </View>
+);
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  }
 });
 
-export default Home;
+export default HomeWrapper;

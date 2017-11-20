@@ -1,30 +1,52 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { View, Text, StyleSheet } from 'react-native';
-import User from 'native/header/user';
 
-const Header = () => (
+const Header = ({ recipes, user }) => (
   <View style={ styles.container }>
-    <Text style={ styles.headerTitle }>
-      Recipes Book
+    <Text style={ styles.title }>
+      {`My Recipes `}
+
+      <Text style={ styles.subtitle }>({ recipes.length })</Text>
     </Text>
 
-    <User />
+    <Text style={ styles.username }>
+      { user.name }
+    </Text>
   </View>
 );
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: '#4180b3',
     width: '100%',
     height: 70,
-    justifyContent: 'center',
-    alignItems: 'center',
     flexDirection: 'row',
-    backgroundColor: '#0e749a'
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingLeft: 40,
+    paddingRight: 40
   },
-  headerTitle: {
-    marginRight: 20,
-    color: 'white'
+  title: {
+    color: 'white',
+    fontSize: 24,
+    fontWeight: '300'
+  },
+  subtitle: {
+    color: 'white',
+    fontSize: 14,
+    fontWeight: '300'
+  },
+  username: {
+    color: 'white',
+    fontSize: 17,
+    fontWeight: '300'
   }
 });
 
-export default Header;
+const mapStateToProps = (state) => ({
+  recipes: state.recipes,
+  user: state.user
+});
+
+export default connect(mapStateToProps)(Header);
