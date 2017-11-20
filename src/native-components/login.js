@@ -87,12 +87,14 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 30,
     textAlign: 'center',
-    marginBottom: 15
+    marginBottom: 15,
+    color: '#535353'
   },
   subtitle: {
     fontSize: 15,
     textAlign: 'center',
-    fontWeight: '300'
+    fontWeight: '300',
+    color: '#535353'
   },
   button: {
     width: '100%',

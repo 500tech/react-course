@@ -1,14 +1,21 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { TouchableOpacity, View, Text, StyleSheet, Image } from 'react-native';
 import { withNavigation } from 'react-navigation';
 
 const Recipe = ({ recipe, navigation }) => {
   return (
     <TouchableOpacity style={ styles.container }
                       onPress={ () => navigation.navigate('RecipeDetails', recipe) }>
-      <Text style={ styles.title }>
-        { recipe.title }
+      <View style={ styles.recipeWrapper }>
+        <Image source={require('../../assets/dish.png')}
+               style={ styles.image }/>
+
+        <Text style={ styles.title }>
+          { recipe.title }
         </Text>
+      </View>
+
+      <View style={ styles.separator }/>
     </TouchableOpacity>
   );
 };
@@ -18,15 +25,27 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 50,
     alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 4,
-    marginBottom: 20,
-    borderColor: '#0e749a',
-    borderWidth: 1,
-    shadowColor: '#000',
-    shadowOpacity: 0.1,
-    shadowRadius: 2,
-    elevation: 5
+    marginBottom: 20
+  },
+  recipeWrapper: {
+    width: '100%',
+    flexDirection: 'row'
+  },
+  image: {
+    width: 30,
+    height: 20,
+    marginRight: 15
+  },
+  title: {
+    fontWeight: '300',
+    color: '#535353'
+  },
+  separator: {
+    marginTop: 10,
+    height: 1,
+    backgroundColor: '#d2d2d2',
+    width: '95%',
+    alignSelf: 'flex-end'
   }
 });
 

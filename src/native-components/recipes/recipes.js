@@ -1,26 +1,37 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { toggleRecipe, fetchRecipes } from '../../actions/recipes';
-import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, ScrollView, StyleSheet, RefreshControl } from 'react-native';
 
 import Recipe from 'native/recipes/recipe';
 
 class Recipes extends React.Component {
+  state = {
+    isLoading: false
+  };
+
+  componentDidMount() {
+    this.props.fetchRecipes();
+  }
+
+  refreshList = () => {
+    this.setState({ isLoading: true }, () => {
+      this.props.fetchRecipes();
+
+      this.setState({ isLoading: false });
+    });
+  };
+
   render() {
-    const { recipes, fetchRecipes } = this.props;
+    const { recipes } = this.props;
 
     return (
       <View style={ styles.container }>
-        <ScrollView style={{ width: '100%', flex: 1 }}>
+        <ScrollView style={{ width: '100%', flex: 1 }}
+                    refreshControl={ <RefreshControl refreshing={ this.state.isLoading }
+                                                     onRefresh={ this.refreshList }/> }>
           { recipes.map(recipe => <Recipe recipe={recipe} key={recipe.id}/>) }
         </ScrollView>
-
-        <TouchableOpacity onPress={ fetchRecipes }
-                          style={ styles.refreshButton }>
-          <Text style={ styles.refreshButtonLabel }>
-            Refresh
-          </Text>
-        </TouchableOpacity>
       </View>
     )
   }
@@ -31,10 +42,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: 20,
+    paddingTop: 50,
     paddingBottom: 20,
-    paddingLeft: 10,
-    paddingRight: 10
+    paddingLeft: 50,
+    paddingRight: 50,
+    backgroundColor: 'white',
+    overflow: 'visible'
   },
   refreshButton: {
     marginTop: 10,
