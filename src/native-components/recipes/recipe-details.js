@@ -42,9 +42,14 @@ class RecipeDetailsWrapper extends React.Component {
   static navigationOptions = (props) => ({
     gesturesEnabled: true,
     title: props.navigation.state.params.title,
+    headerTitleStyle: {
+      color: '#535353'
+    },
     headerStyle: {
       height: 30,
-      paddingBottom: 15
+      paddingBottom: 15,
+      backgroundColor: '#4180b34d',
+      borderBottomColor: 'transparent'
     }
   });
 

@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   },
   addButton: {
     position: 'absolute',
-    bottom: 30,
+    bottom: 50,
     right: 30,
     backgroundColor: '#0e749a',
     height: 50,
