@@ -10,7 +10,7 @@ class AddRecipe extends React.Component {
     gesturesEnabled: true,
     title: 'Add a recipe',
     headerTitleStyle: {
-      color: '#535353'
+      color: '#2c618a'
     },
     headerStyle: {
       height: 30,

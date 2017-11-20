@@ -43,7 +43,7 @@ class RecipeDetailsWrapper extends React.Component {
     gesturesEnabled: true,
     title: props.navigation.state.params.title,
     headerTitleStyle: {
-      color: '#535353'
+      color: '#2c618a'
     },
     headerStyle: {
       height: 30,
