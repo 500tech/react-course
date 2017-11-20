@@ -34,10 +34,12 @@ class AddRecipe extends React.Component {
             <Text style={ styles.inputLabel }>Title</Text>
 
             <TextInput placeholder="Enter recipe title..."
+                       autofocus
                        value={this.state.title}
                        onChangeText={text => this.setState({ title: text })}
                        style={ [styles.textInput, { height: 40 }] }
-                       returnKeyType="done"
+                       returnKeyType="next"
+                       onSubmitEditing={ () => this.description.focus() }
                        numOfLines={ 1 }/>
           </View>
 
@@ -45,10 +47,12 @@ class AddRecipe extends React.Component {
             <Text style={ styles.inputLabel }>Description</Text>
 
             <TextInput style={ [styles.textInput, { minHeight: 60 }] }
+                       ref={ ref => this.description = ref }
                        value={this.state.description}
                        onChangeText={text => this.setState({ description: text })}
                        placeholder="Enter recipe description..."
-                       multiline
+                       returnKeyType="send"
+                       onSubmitEditing={ this.onSubmit.bind(this) }
                        autoGrow/>
           </View>
         </KeyboardAvoidingView>

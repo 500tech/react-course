@@ -9,8 +9,6 @@ import ToggleBox from 'native/recipes/toggle-box';
 
 const RecipeDetails = ({ recipe, toggleRecipe }) => (
   <View style={ styles.container }>
-    <Text style={ styles.title }>{ recipe.title }</Text>
-
     <Text style={ styles.description }>{ recipe.description }</Text>
 
     <ToggleBox title="Favorite" toggle={ () => toggleRecipe(recipe.id) } active={ recipe.favorite }/>
@@ -41,6 +39,15 @@ const styles = StyleSheet.create({
 });
 
 class RecipeDetailsWrapper extends React.Component {
+  static navigationOptions = (props) => ({
+    gesturesEnabled: true,
+    title: props.navigation.state.params.title,
+    headerStyle: {
+      height: 30,
+      paddingBottom: 15
+    }
+  });
+
   render() {
     const { recipe } = this.props;
 

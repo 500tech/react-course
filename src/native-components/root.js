@@ -14,7 +14,7 @@ const Root = StackNavigator({
   Tabs: { screen: Tabs, navigationOptions: { header: null } },
   RecipeDetails: { screen: RecipeDetails },
 }, {
-  headerMode: 'none'
+  headerMode: 'screen'
 });
 
 export default Root;
