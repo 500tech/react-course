@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import { NavLink } from 'react-router-dom';
 
 const Recipe = ({ recipe, toggle }) => (
-  <li className={ classNames({ 'favorite': recipe.favorite }) }
-      onClick={ () => toggle(recipe.id) }>
+  <NavLink to={ `/recipe/${ recipe.id }` } className='recipe' activeClassName='current' >
     { recipe.title }
-  </li>
+  </NavLink>
 );
 
 Recipe.propTypes = {

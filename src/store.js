@@ -7,11 +7,7 @@ const reducer = (state, action) => {
 
   switch (action.type) {
     case consts.ADD_RECIPE:
-      const newRecipe = {
-        id: getID(),
-        title: action.title,
-        favorite: false
-      };
+      const newRecipe = Object.assign({}, action.payload, { favorite: false });
 
       const newRecipes = state.recipes.concat(newRecipe);
 
@@ -20,7 +16,7 @@ const reducer = (state, action) => {
       });
 
     case consts.TOGGLE_RECIPE:
-      const updatedRecipes = state.recipes.map(recipe => recipe.id !== action.id
+      const updatedRecipes = state.recipes.map(recipe => recipe.id !== action.payload
         ? recipe
         : Object.assign({}, recipe, { favorite: !recipe.favorite }));
 
@@ -35,9 +31,9 @@ const reducer = (state, action) => {
 
 const initialState = {
   recipes: [
-    { id: getID(), title: 'Waffles', favorite: false },
-    { id: getID(), title: 'Omelette', favorite: true },
-    { id: getID(), title: 'Dog Food', favorite: true }
+    { id: getID(), title: 'Waffles', favorite: false, desc: 'a' },
+    { id: getID(), title: 'Omelette', favorite: true, desc: 'b' },
+    { id: getID(), title: 'Dog Food', favorite: true, desc: 'c' }
   ]
 };
 
