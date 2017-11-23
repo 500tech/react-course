@@ -1,14 +1,21 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-
-import store from './src/store';
-
-import Root from 'native/root'
+import { Text, View, StyleSheet } from 'react-native';
 
 const App = () => (
-  <Provider store={ store }>
-    <Root/>
-  </Provider>
+  <View style={ styles.container }>
+    <Text>
+      Hello, course!
+    </Text>
+  </View>
 );
+
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    height: '100%'
+  }
+});
 
 export default App;
