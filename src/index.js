@@ -1,13 +1,11 @@
 import React from 'react';
 import { render } from 'react-dom';
 import './index.css';
+import Recipe from './components/Recipe';
 
 let id = 0;
 const getID = () => id += 1;
 
-const Recipe = ({ recipe }) => (
-  <li>{ recipe.title }</li>
-);
 
 const Recipes = ({ recipes }) => (
   <ul>
