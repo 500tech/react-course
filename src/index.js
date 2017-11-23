@@ -16,23 +16,38 @@ const Header = () => (
   </header>
 );
 
-const Todo = ({ completed, title }) => (
-  <li className={ completed ? "completed" : "" }>
+const Todo = ({ todo }) => (
+  <li className={ todo.completed ? "completed" : "" }>
     <div className="view">
-      <input className="toggle" type="checkbox" checked={ completed }/>
-      <label>{ title }</label>
+      <input className="toggle" type="checkbox" checked={ todo.completed }/>
+      <label>{ todo.title }</label>
     </div>
   </li>
 );
 
-const Todos = () => (
-  <ul className="todo-list">
-    <Todo completed={ true } title="Converted to JSX" />
-    <Todo completed={ true } title="Divide into Components" />
-    <Todo completed={ false } title="Do iteration" />
-    <Todo completed={ false } title="Make dynamic" />
-  </ul>
-);
+class Todos extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      todos: [
+        { completed: true, title: 'Converted to JSX', owner: 'Kipi' },
+        { completed: true, title: 'Divide into components' },
+        { completed: false, title: 'Make dynamic' }
+      ]
+    };
+  }
+
+  render() {
+    return (
+      <ul className="todo-list">
+        {
+          this.state.todos.map(todo => <Todo key={ todo.title } todo={ todo } />)
+        }
+      </ul>
+    );
+  }
+}
 
 const Main = () => (
   <section className="main">
