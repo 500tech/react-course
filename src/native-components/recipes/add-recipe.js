@@ -24,8 +24,6 @@ class AddRecipe extends React.Component {
       title: '',
       description: ''
     });
-
-    this.props.navigation.goBack(null);
   }
 
   render() {
