@@ -1,12 +1,69 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import PropTypes from 'prop-types';
+import { ScrollView, View, Text, TextInput, StyleSheet, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
+import { connect } from 'react-redux';
+import { addRecipe } from '../../actions/recipes';
+import { getID } from '../../lib/utils';
 
 class AddRecipe extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      title: '',
+      description: ''
+    }
+  }
+
+  onSubmit() {
+    const id = getID();
+
+    this.props.addRecipe(id, this.state.title, this.state.description);
+
+    this.setState({
+      title: '',
+      description: ''
+    });
+
+    this.props.navigation.goBack(null);
+  }
+
   render() {
     return (
-      <View>
-        <Text>Add recipe</Text>
-      </View>
+      <ScrollView contentContainerStyle={ styles.container }>
+        <KeyboardAvoidingView style={ styles.inputWrapper }>
+          <View style={ styles.inputContainer }>
+            <Text style={ styles.inputLabel }>Title</Text>
+
+            <TextInput placeholder="Enter recipe title..."
+                       autofocus
+                       value={this.state.title}
+                       onChangeText={text => this.setState({ title: text })}
+                       style={ [styles.textInput, { height: 40 }] }
+                       returnKeyType="next"
+                       onSubmitEditing={ () => this.description.focus() }
+                       numOfLines={ 1 }/>
+          </View>
+
+          <View style={ styles.inputContainer }>
+            <Text style={ styles.inputLabel }>Description</Text>
+
+            <TextInput style={ [styles.textInput, { minHeight: 60 }] }
+                       ref={ ref => this.description = ref }
+                       value={this.state.description}
+                       onChangeText={text => this.setState({ description: text })}
+                       placeholder="Enter recipe description..."
+                       returnKeyType="send"
+                       onSubmitEditing={ this.onSubmit.bind(this) }
+                       autoGrow/>
+          </View>
+        </KeyboardAvoidingView>
+
+        <TouchableOpacity style={ styles.button }
+                          onPress={ this.onSubmit.bind(this) }>
+          <Text style={ styles.buttonLabel }>Add</Text>
+        </TouchableOpacity>
+      </ScrollView>
     );
   }
 }
@@ -56,4 +113,8 @@ const styles = StyleSheet.create({
   }
 });
 
-export default AddRecipe;
+AddRecipe.propTypes = {
+  addRecipe: PropTypes.func.isRequired
+};
+
+export default connect(null, { addRecipe })(AddRecipe);
