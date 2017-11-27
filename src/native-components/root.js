@@ -1,37 +1,57 @@
 import React from 'react';
-import { View, StyleSheet, Text, Platform } from 'react-native';
+import { View, StyleSheet, Text, Platform, TouchableOpacity } from 'react-native';
 import { StackNavigator, TabNavigator, DrawerNavigator } from 'react-navigation';
 
-const FirstComponent = () => (
-  <View>
+// COMPONENTS
+const FirstComponent = ({ navigation }) => (
+  <TouchableOpacity onPress={ () => navigation.navigate('Second') }>
     <Text>First component!</Text>
-  </View>
+  </TouchableOpacity>
 );
 
-const SecondComponent = () => (
-  <View>
+const SecondComponent = ({ navigation }) => (
+  <TouchableOpacity onPress={ () => navigation.navigate('Third') }>
     <Text>Second component!</Text>
-  </View>
+  </TouchableOpacity>
 );
 
-const ThirdComponent = () => (
-  <View>
+const ThirdComponent = ({ navigation }) => (
+  <TouchableOpacity onPress={ () => navigation.navigate('First') }>
     <Text>Third component!</Text>
-  </View>
+  </TouchableOpacity>
 );
+
+// NAVIGATORS
+const StackNavigation = StackNavigator({
+  First: { screen: FirstComponent },
+  Second: { screen: SecondComponent },
+  Third: { screen: ThirdComponent }
+});
+
+const DrawerNavigation = DrawerNavigator({
+  First: { screen: FirstComponent },
+  Second: { screen: SecondComponent },
+  Third: { screen: ThirdComponent }
+});
+
+const TabNavigation = TabNavigator({
+  First: { screen: FirstComponent },
+  Second: { screen: SecondComponent },
+  Third: { screen: ThirdComponent }
+});
 
 const Root = () => (
   <View style={ styles.container }>
-    <Text>Let's navigate</Text>
+    {/*<StackNavigation />*/}
+    {/*<DrawerNavigation />*/}
+    {/*<TabNavigation />*/}
   </View>
 );
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
     height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
+    width: '100%',
     paddingTop: Platform.OS === 'ios' ? 20 : 0
   }
 });
