@@ -1,22 +1,32 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { View, StyleSheet, Platform } from 'react-native';
+import { TouchableOpacity, View, StyleSheet, Platform } from 'react-native';
 
-import Home from 'native/home';
-import Login from 'native/login';
-
-const Root = ({ user }) => (
-  <View style={ styles.appContainer }>
-    { user ? <Home/> : <Login/> }
-  </View>
-);
+class Root extends React.Component {
+  render() {
+    return (
+      <View style={ styles.appContainer }>
+        <TouchableOpacity>
+          <View style={ styles.square }/>
+        </TouchableOpacity>
+      </View>
+    )
+  }
+}
 
 const styles = StyleSheet.create({
   appContainer: {
     height: '100%',
     width: '100%',
     flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
     paddingTop: Platform.OS === 'ios' ? 20 : 0
+  },
+  square: {
+    height: 200,
+    width: 200,
+    backgroundColor: 'red'
   }
 });
 
