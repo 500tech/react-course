@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, View, StyleSheet, Platform } from 'react-native';
+import { Animated, TouchableOpacity, View, StyleSheet, Platform } from 'react-native';
 
 class Root extends React.Component {
   constructor() {
