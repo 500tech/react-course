@@ -1,8 +1,11 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { TouchableOpacity, View, StyleSheet, Platform } from 'react-native';
 
 class Root extends React.Component {
+  constructor() {
+    super();
+  }
+
   render() {
     return (
       <View style={ styles.appContainer }>
@@ -30,8 +33,4 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = (state) => ({
-  user: state.user
-});
-
-export default connect(mapStateToProps)(Root);
+export default Root;
