@@ -1,11 +1,31 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
+import { fetchRecipes } from '../../actions/recipes';
+import { View, ScrollView, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-const Recipes = () => (
-  <View>
-    <Text>Recipes</Text>
-  </View>
-);
+import Recipe from 'native/recipes/recipe';
+
+class Recipes extends React.Component {
+  componentDidMount() {
+    this.props.fetchRecipes();
+  }
+
+  render() {
+    const { recipes } = this.props;
+
+    return (
+      <View style={ styles.container }>
+        <ScrollView style={{ width: '100%', flex: 1 }}>
+          { recipes.map(recipe => <Recipe recipe={recipe} key={recipe.id}/>) }
+        </ScrollView>
+
+        <TouchableOpacity style={ styles.addButton }>
+          <Text style={ styles.addButtonLabel }>+</Text>
+        </TouchableOpacity>
+      </View>
+    )
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -56,4 +76,10 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Recipes;
+const mapStateToProps = (state) => ({
+  recipes: state.recipes
+});
+
+export default connect(mapStateToProps, {
+  fetchRecipes
+})(Recipes);

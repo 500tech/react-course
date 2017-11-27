@@ -1,11 +1,22 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { TouchableOpacity, View, Text, StyleSheet, Image } from 'react-native';
 
-const Recipe = () => (
-  <View>
-    <Text>Recipe</Text>
-  </View>
-);
+const Recipe = ({ recipe }) => {
+  return (
+    <TouchableOpacity style={ styles.container }>
+      <View style={ styles.recipeWrapper }>
+        <Image source={require('../../assets/dish.png')}
+               style={ styles.image }/>
+
+        <Text style={ styles.title }>
+          { recipe.title }
+        </Text>
+      </View>
+
+      <View style={ styles.separator }/>
+    </TouchableOpacity>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {

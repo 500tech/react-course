@@ -1,31 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { View, Text, StyleSheet, ScrollView, Platform } from 'react-native';
+import { View, StyleSheet, Platform } from 'react-native';
 
 import Header from 'native/header';
+import Recipes from 'native/recipes/recipes'
 
 import { fetchRecipes } from '../actions/recipes';
 import { fetchUser } from '../actions/user';
 
 class Root extends React.Component {
   componentDidMount() {
-    this.props.fetchRecipes();
     this.props.fetchUser();
   }
 
   render() {
-    const { recipes } = this.props;
-
     return (
       <View style={ styles.container }>
         <Header />
-        <ScrollView contentContainerStyle={ styles.scroll }>
-          {
-            recipes.map((recipe) => (
-              <Text key={ recipe.id }>{ recipe.title }</Text>
-            ))
-          }
-        </ScrollView>
+
+        <Recipes />
       </View>
     );
   }
