@@ -38,4 +38,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default RecipeDetails;
+export default RecipeDetails
