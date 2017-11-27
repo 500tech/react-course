@@ -16,7 +16,14 @@ class Recipes extends React.Component {
     return (
       <View style={ styles.container }>
         <ScrollView style={{ width: '100%', flex: 1 }}>
-          { recipes.map(recipe => <Recipe recipe={recipe} key={recipe.id}/>) }
+          {
+            recipes.map(recipe => (
+              <Recipe key={recipe.id}
+                      recipe={recipe}
+                      selectRecipe={ this.props.selectRecipe }/>
+
+            ))
+          }
         </ScrollView>
 
         <TouchableOpacity style={ styles.addButton }>

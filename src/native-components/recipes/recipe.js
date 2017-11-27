@@ -1,9 +1,10 @@
 import React from 'react';
 import { TouchableOpacity, View, Text, StyleSheet, Image } from 'react-native';
 
-const Recipe = ({ recipe }) => {
+const Recipe = ({ recipe, selectRecipe }) => {
   return (
-    <TouchableOpacity style={ styles.container }>
+    <TouchableOpacity style={ styles.container }
+                      onPress={ () => selectRecipe(recipe) }>
       <View style={ styles.recipeWrapper }>
         <Image source={require('../../assets/dish.png')}
                style={ styles.image }/>

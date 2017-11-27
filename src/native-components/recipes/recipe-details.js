@@ -1,15 +1,23 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
-const RecipeDetails = ({ recipe }) => (
-  <View>
-    <Text>Recipe details</Text>
-  </View>
+const RecipeDetails = ({ recipe, unselectRecipe }) => (
+  <TouchableOpacity style={ styles.container }
+                    onPress={ unselectRecipe }>
+    <Text style={ styles.title }>
+      { recipe.title }
+    </Text>
+
+    <Text style={ styles.description }>
+      { recipe.description }
+    </Text>
+  </TouchableOpacity>
 );
 
 RecipeDetails.propTypes = {
-  recipe: PropTypes.object.isRequired
+  recipe: PropTypes.object.isRequired,
+  unselectRecipe: PropTypes.func.isRequired
 };
 
 const styles = StyleSheet.create({
