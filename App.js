@@ -1,12 +1,14 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Provider } from 'react-redux';
+
+import Root from 'native/root';
+
+import store from './src/store';
 
 const App = () => (
-  <View>
-    <Text>
-      Hello, course!
-    </Text>
-  </View>
+  <Provider store={ store }>
+    <Root />
+  </Provider>
 );
 
 export default App;
