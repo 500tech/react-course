@@ -5,6 +5,7 @@ import { View, StyleSheet, Platform } from 'react-native';
 import Header from 'native/header';
 import Recipes from 'native/recipes/recipes'
 import RecipeDetails from 'native/recipes/recipe-details';
+import AddRecipe from 'native/recipes/add-recipe';
 
 import { fetchRecipes } from '../actions/recipes';
 import { fetchUser } from '../actions/user';
@@ -27,12 +28,13 @@ class Root extends React.Component {
       <View style={ styles.container }>
         <Header />
 
-        {
-          selectedRecipe
-            ? <RecipeDetails recipe={ selectedRecipe }
-                             unselectRecipe={ () => this.selectRecipe(null) }/>
-            : <Recipes selectRecipe={ this.selectRecipe }/>
-        }
+        <AddRecipe />
+        {/*{*/}
+          {/*selectedRecipe*/}
+            {/*? <RecipeDetails recipe={ selectedRecipe }*/}
+                             {/*unselectRecipe={ () => this.selectRecipe(null) }/>*/}
+            {/*: <Recipes selectRecipe={ this.selectRecipe }/>*/}
+        {/*}*/}
       </View>
     );
   }
