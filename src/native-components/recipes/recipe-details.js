@@ -1,23 +1,19 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-const RecipeDetails = ({ recipe, unselectRecipe }) => (
-  <TouchableOpacity style={ styles.container }
-                    onPress={ unselectRecipe }>
-    <Text style={ styles.title }>
-      { recipe.title }
-    </Text>
+import { toggleRecipe } from '../../actions/recipes';
 
-    <Text style={ styles.description }>
-      { recipe.description }
-    </Text>
-  </TouchableOpacity>
+const RecipeDetails = ({ recipe, toggleRecipe }) => (
+  <View style={ styles.container }>
+    <Text style={ styles.description }>{ recipe.description }</Text>
+  </View>
 );
 
 RecipeDetails.propTypes = {
   recipe: PropTypes.object.isRequired,
-  unselectRecipe: PropTypes.func.isRequired
+  toggleRecipe: PropTypes.func.isRequired
 };
 
 const styles = StyleSheet.create({
@@ -38,4 +34,36 @@ const styles = StyleSheet.create({
   }
 });
 
-export default RecipeDetails;
+class RecipeDetailsWrapper extends React.Component {
+  static navigationOptions = (props) => ({
+    gesturesEnabled: true,
+    title: props.navigation.state.params.title,
+    headerTitleStyle: {
+      color: '#2c618a'
+    },
+    headerStyle: {
+      height: 30,
+      paddingBottom: 15,
+      backgroundColor: '#4180b34d',
+      borderBottomColor: 'transparent'
+    }
+  });
+
+  render() {
+    const { recipe } = this.props;
+
+    return recipe
+      ? <RecipeDetails { ...this.props }/>
+      : <Text>Recipe not found!</Text>
+  }
+}
+
+const mapStateToProps = (state, ownProps) => {
+  const id = parseInt(ownProps.navigation.state.params.id, 10);
+
+  return {
+    recipe: state.recipes.find(recipe => recipe.id === id)
+  };
+};
+
+export default connect(mapStateToProps, { toggleRecipe })(RecipeDetailsWrapper);

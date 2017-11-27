@@ -6,6 +6,20 @@ import { addRecipe } from '../../actions/recipes';
 import { getID } from '../../lib/utils';
 
 class AddRecipe extends React.Component {
+  static navigationOptions = (props) => ({
+    gesturesEnabled: true,
+    title: 'Add a recipe',
+    headerTitleStyle: {
+      color: '#2c618a'
+    },
+    headerStyle: {
+      height: 30,
+      paddingBottom: 15,
+      backgroundColor: '#4180b34d',
+      borderBottomColor: 'transparent'
+    }
+  });
+
   constructor() {
     super();
 
@@ -24,6 +38,8 @@ class AddRecipe extends React.Component {
       title: '',
       description: ''
     });
+
+    this.props.navigation.goBack(null);
   }
 
   render() {

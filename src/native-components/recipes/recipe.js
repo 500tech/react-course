@@ -1,10 +1,11 @@
 import React from 'react';
 import { TouchableOpacity, View, Text, StyleSheet, Image } from 'react-native';
+import { withNavigation } from 'react-navigation';
 
-const Recipe = ({ recipe, selectRecipe }) => {
+const Recipe = ({ recipe, navigation }) => {
   return (
     <TouchableOpacity style={ styles.container }
-                      onPress={ () => selectRecipe(recipe) }>
+                      onPress={ () => navigation.navigate('RecipeDetails', recipe) }>
       <View style={ styles.recipeWrapper }>
         <Image source={require('../../assets/dish.png')}
                style={ styles.image }/>
@@ -48,4 +49,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Recipe;
+export default withNavigation(Recipe);

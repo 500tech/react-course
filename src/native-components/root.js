@@ -2,62 +2,26 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { View, StyleSheet, Platform } from 'react-native';
 
+import Home from 'native/home';
 import Login from 'native/login';
-import Header from 'native/header';
-import Recipes from 'native/recipes/recipes'
-import RecipeDetails from 'native/recipes/recipe-details';
-import AddRecipe from 'native/recipes/add-recipe';
 
-import { fetchRecipes } from '../actions/recipes';
-import { fetchUser } from '../actions/user';
-
-class Root extends React.Component {
-  state = {
-    selectedRecipe: null
-  };
-
-  componentDidMount() {
-    this.props.fetchUser();
-  }
-
-  selectRecipe = (recipe = null) => this.setState({ selectedRecipe: recipe });
-
-  render() {
-    const { selectedRecipe } = this.state;
-
-    return (
-      <View style={ styles.container }>
-        <Login/>
-
-        {/*<Header />*/}
-
-        {/*<AddRecipe />*/}
-        {/*{*/}
-          {/*selectedRecipe*/}
-            {/*? <RecipeDetails recipe={ selectedRecipe }*/}
-                             {/*unselectRecipe={ () => this.selectRecipe(null) }/>*/}
-            {/*: <Recipes selectRecipe={ this.selectRecipe }/>*/}
-        {/*}*/}
-      </View>
-    );
-  }
-}
+const Root = ({ user }) => (
+  <View style={ styles.appContainer }>
+    { user ? <Home/> : <Login/> }
+  </View>
+);
 
 const styles = StyleSheet.create({
-  container: {
-    width: '100%',
+  appContainer: {
     height: '100%',
-    paddingTop: Platform.OS === 'ios' ? 20 : 0
-  },
-  scroll: {
+    width: '100%',
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    paddingTop: Platform.OS === 'ios' ? 20 : 0
   }
 });
 
 const mapStateToProps = (state) => ({
-  recipes: state.recipes
+  user: state.user
 });
 
-export default connect(mapStateToProps, { fetchUser, fetchRecipes })(Root);
+export default connect(mapStateToProps)(Root);

@@ -1,32 +1,40 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchRecipes } from '../../actions/recipes';
-import { View, ScrollView, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { toggleRecipe, fetchRecipes } from '../../actions/recipes';
+import { View, ScrollView, Text, StyleSheet, TouchableOpacity, RefreshControl } from 'react-native';
 
 import Recipe from 'native/recipes/recipe';
 
 class Recipes extends React.Component {
+  state = {
+    isLoading: false
+  };
+
   componentDidMount() {
     this.props.fetchRecipes();
   }
+
+  refreshList = () => {
+    this.setState({ isLoading: true }, () => {
+      this.props.fetchRecipes();
+
+      this.setState({ isLoading: false });
+    });
+  };
 
   render() {
     const { recipes } = this.props;
 
     return (
       <View style={ styles.container }>
-        <ScrollView style={{ width: '100%', flex: 1 }}>
-          {
-            recipes.map(recipe => (
-              <Recipe key={recipe.id}
-                      recipe={recipe}
-                      selectRecipe={ this.props.selectRecipe }/>
-
-            ))
-          }
+        <ScrollView style={{ width: '100%', flex: 1 }}
+                    refreshControl={ <RefreshControl refreshing={ this.state.isLoading }
+                                                     onRefresh={ this.refreshList }/> }>
+          { recipes.map(recipe => <Recipe recipe={recipe} key={recipe.id}/>) }
         </ScrollView>
 
-        <TouchableOpacity style={ styles.addButton }>
+        <TouchableOpacity style={ styles.addButton }
+                          onPress={ () => this.props.navigation.navigate('AddRecipe') }>
           <Text style={ styles.addButtonLabel }>+</Text>
         </TouchableOpacity>
       </View>
@@ -88,5 +96,6 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
+  toggle: toggleRecipe,
   fetchRecipes
 })(Recipes);
