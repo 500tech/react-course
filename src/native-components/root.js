@@ -1,12 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Platform } from 'react-native';
+
+import Header from 'native/header';
 
 import { fetchRecipes } from '../actions/recipes';
+import { fetchUser } from '../actions/user';
 
 class Root extends React.Component {
   componentDidMount() {
     this.props.fetchRecipes();
+    this.props.fetchUser();
   }
 
   render() {
@@ -14,6 +18,7 @@ class Root extends React.Component {
 
     return (
       <View style={ styles.container }>
+        <Header />
         <ScrollView contentContainerStyle={ styles.scroll }>
           {
             recipes.map((recipe) => (
@@ -29,7 +34,8 @@ class Root extends React.Component {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: '100%'
+    height: '100%',
+    paddingTop: Platform.OS === 'ios' ? 20 : 0
   },
   scroll: {
     flex: 1,
@@ -42,4 +48,4 @@ const mapStateToProps = (state) => ({
   recipes: state.recipes
 });
 
-export default connect(mapStateToProps, { fetchRecipes })(Root);
+export default connect(mapStateToProps, { fetchUser, fetchRecipes })(Root);

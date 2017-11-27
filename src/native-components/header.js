@@ -1,11 +1,26 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { View, Text, StyleSheet } from 'react-native';
 
-const Header = () => (
-  <View>
-    <Text>Header</Text>
-  </View>
-);
+const Header = ({ recipes, user }) => {
+  if (!user) {
+    return null;
+  }
+
+  return (
+    <View style={ styles.container }>
+      <Text style={ styles.title }>
+        {`My Recipes `}
+
+        <Text style={ styles.subtitle }>({ recipes.length })</Text>
+      </Text>
+
+      <Text style={ styles.username }>
+        { user.name }
+      </Text>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -35,4 +50,9 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Header;
+const mapStateToProps = (state) => ({
+  recipes: state.recipes,
+  user: state.user
+});
+
+export default connect(mapStateToProps)(Header);
