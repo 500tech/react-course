@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { View, StyleSheet, Platform } from 'react-native';
 
+import Login from 'native/login';
 import Header from 'native/header';
 import Recipes from 'native/recipes/recipes'
 import RecipeDetails from 'native/recipes/recipe-details';
@@ -26,9 +27,11 @@ class Root extends React.Component {
 
     return (
       <View style={ styles.container }>
-        <Header />
+        <Login/>
 
-        <AddRecipe />
+        {/*<Header />*/}
+
+        {/*<AddRecipe />*/}
         {/*{*/}
           {/*selectedRecipe*/}
             {/*? <RecipeDetails recipe={ selectedRecipe }*/}
