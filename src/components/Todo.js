@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 const Todo = ({ todo, toggle }) => (
   <li className={todo.completed ? "completed" : ""}>
@@ -18,4 +19,8 @@ Todo.propTypes = {
   toggle: PropTypes.func.isRequired
 };
 
-export default Todo;
+const mapDispatchToProps = (dispatch) => ({
+  toggle: (title) => dispatch({ type: 'TOGGLE', title })
+});
+
+export default connect(null, mapDispatchToProps)(Todo);

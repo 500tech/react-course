@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 class InnerHeader extends React.Component {
   handleSubmit = (event) => {
@@ -29,4 +30,15 @@ InnerHeader.propTypes = {
   onAdd: PropTypes.func.isRequired
 };
 
-export default InnerHeader;
+const mapDispatchToProps = (dispatch) => ({
+  onAdd: (title) => dispatch({ type: 'ADD', title })
+});
+
+export default connect(null, mapDispatchToProps)(InnerHeader);
+
+
+
+
+
+
+
