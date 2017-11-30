@@ -1,16 +1,44 @@
 import React from 'react';
-import { Animated, TouchableOpacity, View, StyleSheet, Platform } from 'react-native';
+import { Animated, Easing, TouchableOpacity, View, StyleSheet, Platform } from 'react-native';
 
 class Root extends React.Component {
   constructor() {
     super();
+
+    this.animation = new Animated.Value(0);
+
+    this.height = this.animation.interpolate({
+      inputRange: [0, 200],
+      outputRange: [10, 200]
+    });
+
+    this.backgroundColor = this.animation.interpolate({
+      inputRange: [0, 200],
+      outputRange: ['red', 'black']
+    });
   }
+
+  animate = () => {
+    Animated.spring(
+      this.animation,
+      { toValue: 200, duration: 2000, easing: Easing.bounce }
+    ).start(() => {
+      Animated.spring(
+        this.animation,
+        { toValue: 0, duration: 2000 }
+      ).start();
+    });
+  };
 
   render() {
     return (
       <View style={ styles.appContainer }>
-        <TouchableOpacity>
-          <View style={ styles.square }/>
+        <TouchableOpacity onPress={ this.animate }>
+          <Animated.View style={ [styles.square, {
+            height: this.height,
+            backgroundColor: this.backgroundColor
+          }] }
+                         ref={ ref => this.square = ref }/>
         </TouchableOpacity>
       </View>
     )
@@ -27,9 +55,7 @@ const styles = StyleSheet.create({
     paddingTop: Platform.OS === 'ios' ? 20 : 0
   },
   square: {
-    height: 200,
-    width: 200,
-    backgroundColor: 'red'
+    width: 200
   }
 });
 
