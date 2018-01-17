@@ -1,21 +1,64 @@
 import React, { Component } from 'react';
 import {
   StyleSheet,
-  Text,
-  View
+  View,
+  Slider,
+  Button,
+  Picker,
+  Switch,
+  Text
 } from 'react-native';
 
 export default class App extends Component {
+  state = {
+    showSettings: false,
+    sliderValue: 0,
+    switchValue: false,
+    pickerValue: null
+  };
+
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
+        <Button title="Show settings"
+                style={{ flex: 1 }}
+                onPress={ () => this.setState({ showSettings: !this.state.showSettings }) }/>
 
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
+        {
+          this.state.showSettings && (
+            <View>
+              <View style={ styles.row }>
+                <Slider maximumValue={ 1000 }
+                        minimumValue={ 100 }
+                        step={ 10 }
+                        style={ styles.slider }
+                        value={ this.state.sliderValue }
+                        onValueChange={ (value) => this.setState({ sliderValue: value }) }/>
+
+                <Text>{ this.state.sliderValue }</Text>
+              </View>
+
+              <View style={ styles.row }>
+                <Switch value={ this.state.switchValue }
+                        style={ styles.switch }
+                        onValueChange={ (value) => this.setState({ switchValue: value }) }/>
+
+                <Text>{ this.state.switchValue ? 'TRUE' : 'FALSE' }</Text>
+              </View>
+
+              <View style={ styles.row }>
+                <Picker selectedValue={ this.state.pickerValue }
+                        style={ styles.picker }
+                        onValueChange={ (value) => this.setState({ pickerValue: value }) }>
+                  <Picker.Item label="Java" value="JAVA" />
+                  <Picker.Item label="JavaScript" value="JAVASCRIPT" />
+                </Picker>
+
+                <Text>{ this.state.pickerValue }</Text>
+              </View>
+            </View>
+          )
+        }
       </View>
     );
   }
@@ -27,15 +70,21 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+    paddingTop: 20,
+    width: '100%'
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  slider: {
+    width: '60%'
   },
+  switch: {
+    width: 100,
+  },
+  picker: {
+    width: 100,
+  }
 });
