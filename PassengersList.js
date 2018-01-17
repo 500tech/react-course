@@ -1,11 +1,24 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, Dimensions, Platform } from 'react-native';
+import { View, ScrollView, StyleSheet, Text, Image, ActivityIndicator, Dimensions, Platform } from 'react-native';
+
+import { NAMES_URL } from './constants';
 
 class Home extends React.Component {
   static navigationOptions = {
     header: null,
     drawerLabel: 'Passengers List'
   };
+
+  state = {
+    isLoading: true,
+    passengers: []
+  };
+
+  componentDidMount() {
+    fetch(NAMES_URL).then(response => response.json()).then(response => {
+      this.setState({ passengers: response, isLoading: false });
+    });
+  }
 
   render() {
     return (
@@ -14,6 +27,16 @@ class Home extends React.Component {
         <View style={styles.header}>
           <Image source={require('./assets/el-al.png')} style={styles.logo}/>
         </View>
+
+        <ScrollView contentContainerStyle={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <ActivityIndicator animating={this.state.isLoading} size="large" color="#303546"/>
+
+          { this.state.passengers.map((passenger) => (
+            <View key={passenger.name + passenger.surname}>
+              <Text style={{ color: '#303546' }}>{ passenger.name } { passenger.surname }</Text>
+            </View>
+          )) }
+        </ScrollView>
       </View>
     )
   }
@@ -42,31 +65,6 @@ const styles = StyleSheet.create({
   logo: {
     height: 30,
     width: 300
-  },
-  titleContainer: {
-    marginTop: 40,
-    paddingLeft: 40,
-    width: 300,
-    backgroundColor: 'transparent'
-  },
-  title: {
-    fontSize: 35,
-    color: '#00003d',
-    fontWeight: 'bold'
-  },
-  buttonsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    flexWrap: 'wrap',
-    padding: 40
-  },
-  button: {
-    width: '45%',
-    marginBottom: 30,
-    height: 130,
-    backgroundColor: 'white',
-    alignItems: 'center',
-    justifyContent: 'center'
   }
 });
 
