@@ -3,30 +3,41 @@ import {
   StyleSheet,
   View,
   Button,
-  Modal,
-  StatusBar
+  Image,
+  ScrollView,
+  Text
 } from 'react-native';
+
+import { NAMES_URL, AVATARS_URL } from './constants';
 
 export default class App extends Component {
   state = {
-    modal: false
+    users: []
+  };
+
+  fetchUsers = () => {
+    fetch(NAMES_URL).then(response => response.json()).then((data) => this.setState({ users: data }));
   };
 
   render() {
     return (
       <View style={styles.container}>
-        <StatusBar barStyle={ this.state.modal ? 'light-content' : 'dark-content' }/>
+        <Button title="Fetch users"
+                onPress={ this.fetchUsers }/>
 
-        <Button title="Open modal"
-                onPress={ () => this.setState({ modal: true }) }/>
+        <ScrollView style={{ width: '100%' }}>
+          {
+            this.state.users.map(user => (
+              <View key={ user.name }
+                    style={{ padding: 10, flexDirection: 'row', justifyContent: 'space-between' }}>
+                <Text>{ user.name }</Text>
 
-        <Modal visible={ this.state.modal }
-               animationType="slide">
-          <View style={ [styles.container, { backgroundColor: 'black' }] }>
-            <Button title="Close modal"
-                    onPress={ () => this.setState({ modal: false }) }/>
-          </View>
-        </Modal>
+                <Image source={{ uri: AVATARS_URL + user.name }}
+                       style={{ width: 50, height: 50 }}/>
+              </View>
+            ))
+          }
+        </ScrollView>
       </View>
     );
   }
@@ -34,6 +45,7 @@ export default class App extends Component {
 
 const styles = StyleSheet.create({
   container: {
+    paddingTop: 20,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
