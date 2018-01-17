@@ -31,12 +31,10 @@ class Home extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: Platform.OS === 'ios' ? 20 : 0,
     position: 'relative'
   },
   background: {
     position: 'absolute',
-    top: Platform.OS === 'ios' ? 20 : 0,
     left: 0,
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height
