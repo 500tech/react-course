@@ -15,13 +15,13 @@ export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <StatusBar barStyle={ this.state.modal ? 'light-content' : 'dark-content' }
-                   onRequestClose={() => {}}/>
+        <StatusBar barStyle={ this.state.modal ? 'light-content' : 'dark-content' }/>
 
         <Button title="Open modal"
                 onPress={ () => this.setState({ modal: true }) }/>
 
         <Modal visible={ this.state.modal }
+               onRequestClose={() => {}}
                animationType="slide">
           <View style={ [styles.container, { backgroundColor: 'black' }] }>
             <Button title="Close modal"
