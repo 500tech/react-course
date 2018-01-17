@@ -10,42 +10,18 @@ class Home extends React.Component {
     return (
       <View style={styles.container}>
         <Image style={styles.background} source={require('./assets/background.jpg')}/>
-        <View style={styles.header}>
-          <Image source={require('./assets/el-al.png')} style={styles.logo}/>
-        </View>
+        <View style={styles.header}></View>
 
         <View style={styles.titleContainer}>
           <Text style={styles.title}>
-            What would you like to do?
+            This is a title
           </Text>
         </View>
 
         <View style={styles.buttonsContainer}>
-          <TouchableOpacity style={styles.button}
-                            onPress={() => this.props.navigation.navigate('Book')}>
-            <Image source={require('./assets/plane.png')} style={{ height: 40, width: 40, marginBottom: 20 }}/>
-
-            <Text>Book a flight</Text>
+          <TouchableOpacity style={styles.button}>
+            <Text>Put text here</Text>
           </TouchableOpacity>
-
-          <TouchableOpacity style={styles.button}
-                            onPress={() => this.props.navigation.navigate('SpecialOffers')}>
-            <Image source={require('./assets/tag.png')} style={{ height: 40, width: 40, marginBottom: 20 }}/>
-
-            <Text>Special Offers</Text>
-          </TouchableOpacity >
-
-          <TouchableOpacity style={styles.button}>
-            <Image source={require('./assets/check-in.png')} style={{ height: 40, width: 40, marginBottom: 20 }}/>
-
-            <Text>Express Check-in</Text>
-          </TouchableOpacity >
-
-          <TouchableOpacity style={styles.button}>
-            <Image source={require('./assets/information.png')} style={{ height: 40, width: 40, marginBottom: 20 }}/>
-
-            <Text>Passenger Information</Text>
-          </TouchableOpacity >
         </View>
       </View>
     )
