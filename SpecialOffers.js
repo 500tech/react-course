@@ -3,7 +3,7 @@ import { View, Text } from 'react-native';
 
 const SpecialOffers = () => (
   <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-    <Text style={{ fontSize: 30 }}>BOOK A FLIGHT</Text>
+    <Text style={{ fontSize: 30 }}>SPECIAL OFFERS</Text>
   </View>
 );
 
