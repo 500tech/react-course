@@ -20,7 +20,6 @@ export default class Users extends Component {
   };
 
   render() {
-    console.log('this.state.users', this.state.users);
     return (
       <View style={styles.container}>
         {
