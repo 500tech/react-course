@@ -15,9 +15,7 @@ class Home extends React.Component {
   };
 
   componentDidMount() {
-    fetch(NAMES_URL).then(response => response.json()).then(response => {
-      this.setState({ passengers: response, isLoading: false });
-    });
+    fetch(NAMES_URL).then(response => response.json());
   }
 
   render() {
@@ -30,12 +28,6 @@ class Home extends React.Component {
 
         <ScrollView contentContainerStyle={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
           <ActivityIndicator animating={this.state.isLoading} size="large" color="#303546"/>
-
-          { this.state.passengers.map((passenger) => (
-            <View key={passenger.name + passenger.surname}>
-              <Text style={{ color: '#303546' }}>{ passenger.name } { passenger.surname }</Text>
-            </View>
-          )) }
         </ScrollView>
       </View>
     )
