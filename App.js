@@ -1,6 +1,5 @@
 import Home from './Home';
-import PassengersList from './PassengersList';
 
-const App = PassengersList;
+const App = Home;
 
 export default App;
