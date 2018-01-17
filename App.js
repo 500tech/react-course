@@ -15,7 +15,8 @@ export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <StatusBar barStyle={ this.state.modal ? 'light-content' : 'dark-content' }/>
+        <StatusBar barStyle={ this.state.modal ? 'light-content' : 'dark-content' }
+                   onRequestClose={() => {}}/>
 
         <Button title="Open modal"
                 onPress={ () => this.setState({ modal: true }) }/>
