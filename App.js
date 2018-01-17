@@ -1,4 +1,4 @@
-import Users from '../react-course/Users';
+import Users from './Users';
 
 const App = Users;
 
