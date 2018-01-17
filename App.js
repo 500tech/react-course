@@ -2,63 +2,31 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   View,
-  Slider,
   Button,
-  Picker,
-  Switch,
-  Text
+  Modal,
+  StatusBar
 } from 'react-native';
 
 export default class App extends Component {
   state = {
-    showSettings: false,
-    sliderValue: 0,
-    switchValue: false,
-    pickerValue: null
+    modal: false
   };
 
   render() {
     return (
       <View style={styles.container}>
-        <Button title="Show settings"
-                style={{ flex: 1 }}
-                onPress={ () => this.setState({ showSettings: !this.state.showSettings }) }/>
+        <StatusBar barStyle={ this.state.modal ? 'light-content' : 'dark-content' }/>
 
-        {
-          this.state.showSettings && (
-            <View>
-              <View style={ styles.row }>
-                <Slider maximumValue={ 1000 }
-                        minimumValue={ 100 }
-                        step={ 10 }
-                        style={ styles.slider }
-                        value={ this.state.sliderValue }
-                        onValueChange={ (value) => this.setState({ sliderValue: value }) }/>
+        <Button title="Open modal"
+                onPress={ () => this.setState({ modal: true }) }/>
 
-                <Text>{ this.state.sliderValue }</Text>
-              </View>
-
-              <View style={ styles.row }>
-                <Switch value={ this.state.switchValue }
-                        style={ styles.switch }
-                        onValueChange={ (value) => this.setState({ switchValue: value }) }/>
-
-                <Text>{ this.state.switchValue ? 'TRUE' : 'FALSE' }</Text>
-              </View>
-
-              <View style={ styles.row }>
-                <Picker selectedValue={ this.state.pickerValue }
-                        style={ styles.picker }
-                        onValueChange={ (value) => this.setState({ pickerValue: value }) }>
-                  <Picker.Item label="Java" value="JAVA" />
-                  <Picker.Item label="JavaScript" value="JAVASCRIPT" />
-                </Picker>
-
-                <Text>{ this.state.pickerValue }</Text>
-              </View>
-            </View>
-          )
-        }
+        <Modal visible={ this.state.modal }
+               animationType="slide">
+          <View style={ [styles.container, { backgroundColor: 'black' }] }>
+            <Button title="Close modal"
+                    onPress={ () => this.setState({ modal: false }) }/>
+          </View>
+        </Modal>
       </View>
     );
   }
@@ -70,21 +38,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
-    paddingTop: 20,
-    width: '100%'
   },
-  row: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center'
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
   },
-  slider: {
-    width: '60%'
+  instructions: {
+    textAlign: 'center',
+    color: '#333333',
+    marginBottom: 5,
   },
-  switch: {
-    width: 100,
-  },
-  picker: {
-    width: 100,
-  }
 });
