@@ -2,15 +2,43 @@ import React from 'react';
 import { render } from 'react-dom';
 import './index.css';
 
-const Header = ({ title }) => (
-  <h1 onClick={ () => console.log('Yey') }>{ title }</h1>
-);
+import Header from './components/Header';
+
 
 const Recipe = ({ title }) => (
   <li>{ title }</li>
 );
 
-class Recipes extends React.Component {
+class SimpleForm extends React.Component {
+  handleSubmit = (event) => {
+    event.preventDefault();
+
+    this.props.handleAdd(this.recipeElem.value);
+
+    this.recipeElem.value = '';
+  };
+
+  render() {
+    return (
+      <form onSubmit={ this.handleSubmit }>
+        <input ref={ (elem) => this.recipeElem = elem }/>
+        <button>Add</button>
+      </form>
+    );
+  }
+}
+
+const Recipes = (props) => (
+  <div>
+    <ul>
+      {
+        props.recipes.map(i => <Recipe key={ i } title={ i }/>)
+      }
+    </ul>
+  </div>
+);
+
+class App extends React.Component {
   constructor() {
     super();
 
@@ -19,42 +47,24 @@ class Recipes extends React.Component {
     };
   }
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-
+  addRecipe = (title) => {
     this.setState({
-      recipes: this.state.recipes.concat(this.recipeElem.value)
+      recipes: this.state.recipes.concat(title)
     });
-
-    this.recipeElem.value = '';
   };
 
   render() {
     return (
       <div>
-        <ul>
-          {
-            this.state.recipes.map(i => <Recipe key={ i } title={ i }/>)
-          }
-        </ul>
-
-        <form onSubmit={ this.handleSubmit }>
-          <input ref={ (elem) => this.recipeElem = elem } />
-          <button>Add</button>
-        </form>
+        <div>
+          <Header title='Recipes:'/>
+          <Recipes recipes={ this.state.recipes } />
+          <SimpleForm handleAdd={ this.addRecipe }/>
+        </div>
       </div>
     );
   }
 }
-
-const App = () => (
-  <div>
-    <div>
-      <Header title='Recipes:'/>
-      <Recipes/>
-    </div>
-  </div>
-);
 
 render(
   <App />,
