@@ -1,22 +1,11 @@
 import React from 'react';
+import Todo from './Todo';
 
 const Todos = () => (
   <ul className="todo-list">
-
-    <li className="completed">
-      <div className="view">
-        <input className="toggle" type="checkbox" checked/>
-        <label>Convert to JSX</label>
-      </div>
-    </li>
-
-    <li>
-      <div className="view">
-        <input className="toggle" type="checkbox"/>
-        <label>Divide into Components</label>
-      </div>
-    </li>
-
+    <Todo checked={ true } label="Convert to JSX" />
+    <Todo checked={ true } label="Divide into Components" />
+    <Todo checked={ false } label="Make list dynamic" />
   </ul>
 );
 
