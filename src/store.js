@@ -12,6 +12,11 @@ const reducer = (state, action) => {
         recipes: state.recipes.concat(newRecipe)
       };
 
+    case 'TOGGLE_RECIPE':
+      return {
+        recipes: state.recipes.map(i => i.id !== action.id ? i : Object.assign({}, i, { favorite: !i.favorite }))
+      }
+
     default:
       return state;
   }
