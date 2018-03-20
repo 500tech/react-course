@@ -3,11 +3,9 @@ import { render } from 'react-dom';
 import './index.css';
 
 import Header from './components/Header';
+import Recipes from './components/Recipes';
 
 
-const Recipe = ({ title }) => (
-  <li>{ title }</li>
-);
 
 class SimpleForm extends React.Component {
   handleSubmit = (event) => {
@@ -28,15 +26,6 @@ class SimpleForm extends React.Component {
   }
 }
 
-const Recipes = (props) => (
-  <div>
-    <ul>
-      {
-        props.recipes.map(i => <Recipe key={ i } title={ i }/>)
-      }
-    </ul>
-  </div>
-);
 
 class App extends React.Component {
   constructor() {
