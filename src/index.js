@@ -2,65 +2,68 @@ import React from 'react';
 import { render } from 'react-dom';
 import './index.css';
 
-const Header = (props) => (
-  <h1>{ props.text }</h1>
-);
+import Header from 'components/Header';
 
 const Recipe = ({ name}) => (
   <li onClick={ () => console.log('Hey') }>{ name }</li>
 );
 
-class Recipes extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      recipes: ['Waffles', 'Omelette', 'Pancake'],
-      name: 'Kipi'
-    };
-  }
+class SmartInput extends React.Component {
+  state = { name: '' };
 
   handleSubmit = (event) => {
     event.preventDefault();
 
-    console.log('Yey: ' + this.state.name);
+    this.props.onAdd(this.state.name);
 
-    this.setState({
-      recipes: this.state.recipes.concat(this.state.name),
-      name: ''
-    });
+    this.setState({ name: '' });
   };
 
   render() {
     return (
-      <div>
-        <ul>
-          {
-            this.state.recipes.map(recipe => <Recipe name={ recipe } key={ recipe }/>)
-          }
-        </ul>
-        <form onSubmit={ this.handleSubmit }>
-          <input value={ this.state.name }
-                 onChange={ (e) => this.setState({ name: e.target.value }) }/>
-          <button>add</button>
-        </form>
-      </div>
-    )
+      <form onSubmit={ this.handleSubmit }>
+        <input value={ this.state.name }
+               onChange={ (e) => this.setState({ name: e.target.value }) }/>
+        <button>add</button>
+      </form>
+    );
   }
 }
 
-const App = () => (
+const Recipes = ({ recipes }) => (
   <div>
-    <div>
-      <Header text='Recipes:' />
-      <Recipes />
-    </div>
+    <ul>
+      {
+        recipes.map(recipe => <Recipe name={ recipe } key={ recipe }/>)
+      }
+    </ul>
   </div>
 );
+
+class App extends React.Component {
+  state = {
+    recipes: ['Waffles', 'Omelette', 'Pancake']
+  };
+
+  handleAdd = (name) =>
+    this.setState({ recipes: this.state.recipes.concat(name) });
+
+  render() {
+    return (
+      <div>
+        <div>
+          <Header text='Recipes:'/>
+          <Recipes recipes={ this.state.recipes }/>
+          <SmartInput onAdd={ this.handleAdd }/>
+        </div>
+      </div>
+    );
+  }
+}
 
 window.App = App;
 
 render(
-  App(),
+  <App />,
   document.getElementById('root')
 );
