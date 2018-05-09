@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import store from '../store';
 
 class AddRecipe extends React.Component {
   onSubmit(e) {
     e.preventDefault();
 
-    this.props.addRecipe(this.title.value);
+    store.dispatch({ type: 'ADD', title: this.title.value });
+    // this.props.addRecipe(this.title.value);
 
     this.title.value = '';
   }

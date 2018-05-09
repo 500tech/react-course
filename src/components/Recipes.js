@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Recipe from './Recipe';
+import { connect } from 'react-redux';
 
 const Recipes = ({ recipes, toggle }) => (
   <ul>
@@ -13,4 +14,12 @@ Recipes.propTypes = {
   toggle: PropTypes.func.isRequired
 };
 
-export default Recipes;
+const mapStateToProps = (state) => ({
+  recipes: state.recipes
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  toggle: (recipe) => dispatch({ type: 'TOGGLE_RECIPE', recipe })
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Recipes);
