@@ -5,10 +5,10 @@ const reducer = (state, action) => {
   console.log('Action: ', action);
 
   switch(action.type) {
-    case 'ADD':
-      return {
-        recipes: state.recipes.concat({ id: getID(), title: action.title, favorite: false })
-      };
+    case 'ADD_RECIPE':
+      return Object.assign({}, state, {
+        recipes: state.recipes.concat({ favorite: false, id: getID(), title: action.title })
+      })
 
     case 'TOGGLE_RECIPE':
       return Object.assign({}, state, {
