@@ -1,18 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Todo = ({ completed, label }) => (
-  <li className={ completed ? "completed" : "" }>
+const Todo = ({ todo }) => (
+  <li className={ todo.completed ? "completed" : "" }>
     <div className="view">
-      <input className="toggle" type="checkbox" checked={ completed  } />
-      <label>{ label }</label>
+      <input className="toggle" type="checkbox" checked={ todo.completed  } />
+      <label>{ todo.label }</label>
     </div>
   </li>
 );
 
 Todo.propTypes = {
-  completed: PropTypes.bool.isRequired,
-  label: PropTypes.string.isRequired
+  todo: PropTypes.object.isRequired
 };
 
 export default Todo;

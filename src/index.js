@@ -6,21 +6,36 @@ import InnerHeader from './components/InnerHeader';
 import Main from './components/Main';
 import InnerFooter from './components/InnerFooter';
 
-const App = () => (
-  <div>
+class App extends React.Component {
+  state = {
+    todos: [
+      { completed: true, label: 'Convert to JSX' },
+      { completed: true, label: 'Divide into Components' },
+      { completed: false, label: 'Make list dynamic' },
+      { completed: false, label: 'Add interactions' }
+    ]
+  };
 
-  <section className="todoapp">
+  handleAdd = (title) => {
+    const newTodo = { completed: false, label: title };
+    const newTodosList = this.state.todos.concat(newTodo);
+    this.setState({ todos: newTodosList });
+  };
 
-    <InnerHeader />
+  render() {
+    return (
+      <div>
+        <section className="todoapp">
+          <InnerHeader onAdd={ this.handleAdd }/>
+          <Main todos={ this.state.todos }/>
+          <InnerFooter/>
+        </section>
 
-    <Main />
-
-    <InnerFooter />
-  </section>
-
-  <Footer />
-  </div>
-);
+        <Footer/>
+      </div>
+    );
+  }
+}
 
 render(
   <App/>,

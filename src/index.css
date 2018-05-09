@@ -414,7 +414,7 @@ label[for='toggle-all'] {
 }
 
 .filters {
-  display: none;
+  /*display: none;*/
   margin: 0;
   padding: 0;
   list-style: none;
