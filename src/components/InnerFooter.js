@@ -1,8 +1,11 @@
 import React from 'react';
+import Counter from './Counter';
 
-const InnerFooter = () => (
+const InnerFooter = ({ todos }) => (
   <footer className="footer">
-    <span className="todo-count"><strong>0</strong> item left</span>
+
+    <Counter count={ todos.filter(i => !i.completed).length } />
+
     <ul className="filters">
       <li>
         <a className="selected" href="#/">All</a>

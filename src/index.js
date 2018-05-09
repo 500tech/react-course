@@ -22,13 +22,18 @@ class App extends React.Component {
     this.setState({ todos: newTodosList });
   };
 
+  handleToggle = (todo) => {
+    todo.completed = !todo.completed;
+    this.setState({});
+  };
+
   render() {
     return (
       <div>
         <section className="todoapp">
           <InnerHeader onAdd={ this.handleAdd }/>
-          <Main todos={ this.state.todos }/>
-          <InnerFooter/>
+          <Main todos={ this.state.todos } toggle={ this.handleToggle }/>
+          <InnerFooter todos={ this.state.todos }/>
         </section>
 
         <Footer/>

@@ -2,16 +2,17 @@ import React from 'react';
 import Todos from './Todos';
 import PropTypes from 'prop-types';
 
-const Main = ({ todos }) => (
+const Main = ({ todos, toggle }) => (
   <section className="main">
     <input className="toggle-all" type="checkbox"/>
 
-    <Todos todos={ todos } />
+    <Todos todos={ todos } toggle={ toggle } />
   </section>
 );
 
 Main.propTypes = {
-  todos: PropTypes.array.isRequired
+  todos: PropTypes.array.isRequired,
+  toggle: PropTypes.func.isRequired
 };
 
 export default Main;
