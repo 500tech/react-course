@@ -1,6 +1,8 @@
 import React from 'react';
 import Recipes from './Recipes';
 import AddRecipe from './AddRecipe';
+import { Route, Switch } from 'react-router-dom';
+import RecipeDetails from './RecipeDetails';
 
 const RecipesView = () => (
   <div className="main">
@@ -10,9 +12,11 @@ const RecipesView = () => (
     </div>
 
     <div className="pane">
-      <AddRecipe />
+      <Switch>
+        <Route path="/" exact component={ AddRecipe } />
+        <Route path="/recipes/:id" component={ RecipeDetails } />
+      </Switch>
     </div>
-
   </div>
 );
 

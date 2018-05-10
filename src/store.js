@@ -4,9 +4,9 @@ import reducer from './reducers/root';
 
 const initialState = {
   recipes: [
-    { id: getID(), title: 'Waffles', favorite: false },
-    { id: getID(), title: 'Omelette', favorite: true },
-    { id: getID(), title: 'Dog Food', favorite: true }
+    { id: getID(), title: 'Waffles', favorite: false, desc: 'Very nice but hard' },
+    { id: getID(), title: 'Omelette', favorite: true, desc: 'Tasty but not dessert' },
+    { id: getID(), title: 'Dog Food', favorite: true, desc: 'I never tried' }
   ]
 };
 

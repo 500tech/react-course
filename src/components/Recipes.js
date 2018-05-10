@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Recipe from './Recipe';
 import { toggleFavorite } from '../actions/recipies';
+import { withRouter, NavLink } from 'react-router-dom';
 
 const Recipes = ({ recipes, toggle }) => (
   <ul>
     { recipes.map(recipe => <Recipe key={ recipe.id } recipe={ recipe } toggle={ toggle }/>) }
+    <NavLink to="/" >Add recipe</NavLink>
   </ul>
 );
 
@@ -19,4 +21,4 @@ const mapStateToProps = (state) => ({
   recipes: state.recipes
 });
 
-export default connect(mapStateToProps, { toggle: toggleFavorite })(Recipes);
+export default withRouter(connect(mapStateToProps, { toggle: toggleFavorite })(Recipes));
