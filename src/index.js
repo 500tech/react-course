@@ -12,22 +12,37 @@ const Header = () => (
   </h1>
 );
 
-
-
-class Recipes extends React.Component {
+class AddRecipe extends React.Component {
   state = {
-    recipes: ['Waffles', 'Omelette', 'Pancake'],
     title: ''
   };
 
   handleSubmit(e) {
     e.preventDefault();
-
-    this.setState({
-      recipes: this.state.recipes.concat(this.state.title),
-      title: ''
-    })
+    this.props.handleAdd(this.state.title);
+    this.setState({ title: '' });
   };
+
+  render() {
+    return (
+      <form onSubmit={ this.handleSubmit.bind(this) }>
+        <input value={ this.state.title }
+               onInput={ e => this.setState({ title: e.target.value }) }/>
+        <button>add</button>
+      </form>
+    );
+  }
+}
+
+
+class Recipes extends React.Component {
+  state = {
+    recipes: ['Waffles', 'Omelette', 'Pancake'],
+  };
+
+  handleAdd(title) {
+    this.setState({ recipes: this.state.recipes.concat(title) })
+  }
 
   render() {
     return (
@@ -38,11 +53,7 @@ class Recipes extends React.Component {
           }
         </ul>
 
-        <form onSubmit={ this.handleSubmit.bind(this) }>
-          <input value={ this.state.title }
-                 onInput={ e => this.setState({ title: e.target.value }) }/>
-          <button>add</button>
-        </form>
+        <AddRecipe handleAdd={ this.handleAdd.bind(this) }/>
       </div>
     )
   }
@@ -52,7 +63,7 @@ const App = () => (
   <div>
     <div>
       <Header />
-      <Recipes a={ 3 }/>
+      <Recipes />
     </div>
   </div>
 )
