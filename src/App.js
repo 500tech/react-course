@@ -6,8 +6,7 @@ import ListItem from './ListItem';
 class App extends Component {
   state = {
     data: [
-      { id: 0, label: 'foo bar', active: true },
-      { id: 1, label: 'foo bar', active: true }
+      // { id: 0, label: 'foo bar', active: true },
     ]
   };
 
@@ -34,15 +33,17 @@ class App extends Component {
       <Container>
         <HeaderBg />
         <InnerContainer>
-          <Header>
-            <Title>Time Tracker</Title>
-            <Subtitle>2 items</Subtitle>
-            <Card>
-              <Input placeholder="your awesome title" />
-              <Button onClick={this.handleClick}>add new</Button>
-            </Card>
-          </Header>
-
+          <Fade top>
+            <Header>
+              <Title>Time Tracker</Title>
+              <Subtitle>2 items</Subtitle>
+              <Card>
+                <Input placeholder="your awesome title" />
+                <Button onClick={this.handleClick}>add new</Button>
+              </Card>
+            </Header>
+          </Fade>
+          
           <List>
             {data.map(item => (
               <Fade top>
