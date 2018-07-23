@@ -1,8 +1,34 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import Fade from 'react-reveal/Fade';
 
 class App extends Component {
+  state = {
+    data: [
+      { id: 0, label: 'foo bar', active: true },
+      { id: 1, label: 'foo bar', active: true }
+    ]
+  };
+
+  uuid() {
+    const s4 = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+
+    return `${s4()}${s4()}-${s4()}-${s4()}-${s4()}-${s4()}${s4()}${s4()}`;
+  }
+
+  handleClick = () => {
+    this.setState({
+      data: this.state.data.concat({
+        id: this.uuid(),
+        label: 'untitled',
+        active: false
+      })
+    });
+  };
+
   render() {
+    const { data } = this.state;
+
     return (
       <Container>
         <HeaderBg />
@@ -12,9 +38,17 @@ class App extends Component {
             <Subtitle>2 items</Subtitle>
             <Card>
               <Input placeholder="your awesome title" />
-              <Button>add new</Button>
+              <Button onClick={this.handleClick}>add new</Button>
             </Card>
           </Header>
+
+          <List>
+            {data.map(item => (
+              <Fade top>
+                <ListItem key={item.id}>{item.label}</ListItem>
+              </Fade>
+            ))}
+          </List>
         </InnerContainer>
       </Container>
     );
@@ -45,7 +79,8 @@ const InnerContainer = styled.div`
   width: 100vw;
   min-height: 100vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   box-sizing: border-box;
   padding: 100px;
 `;
@@ -108,4 +143,28 @@ const Button = styled.div`
   &:hover {
     background: #000;
   }
+`;
+
+const List = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px
+  margin-top: 5px;
+`;
+
+const ListItem = styled.div`
+  width: 100%;
+  margin: 5px 0;
+  height: 40px;
+  background: #fff;
+  border-radius: 5px;
+  box-sizing: border-box;
+  box-shadow: 0px 5px 16px 0px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 10px;
+  font-size: 12px;
+  font-weight: 300;
 `;
