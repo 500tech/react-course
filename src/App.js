@@ -43,7 +43,7 @@ class App extends Component {
               </Card>
             </Header>
           </Fade>
-          
+
           <List>
             {data.map(item => (
               <Fade top>
