@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { withRouter } from 'react-router';
 
-export default class ListItem extends React.Component {
+class ListItem extends React.Component {
   state = {
     time: 0
   };
@@ -10,6 +11,8 @@ export default class ListItem extends React.Component {
     setInterval(() => {
       this.setState(prevState => ({ time: prevState.time + 1 }));
     }, 1000);
+
+    console.log(this.props);
   }
 
   render() {
@@ -24,6 +27,8 @@ export default class ListItem extends React.Component {
     );
   }
 }
+
+export default withRouter(ListItem);
 
 const Row = styled.div`
   width: 100%;
