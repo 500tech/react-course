@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { withRouter } from 'react-router';
+import withSpinner from './withSpinner';
 
 class ListItem extends React.Component {
   state = {
@@ -28,7 +29,7 @@ class ListItem extends React.Component {
   }
 }
 
-export default withRouter(ListItem);
+export default withSpinner(withRouter(ListItem));
 
 const Row = styled.div`
   width: 100%;

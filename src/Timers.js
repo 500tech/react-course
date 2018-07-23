@@ -21,14 +21,14 @@ class Timers extends Component {
       data: this.state.data.concat({
         id: this.uuid(),
         label: 'untitled',
-        active: false
+        active: false,
+        isLoading: true
       })
     });
   };
 
   render() {
     const { data } = this.state;
-    console.log(this.props);
 
     return (
       <Container>
@@ -47,8 +47,8 @@ class Timers extends Component {
 
           <List>
             {data.map(item => (
-              <Fade top>
-                <ListItem key={item.id}>{item.label}</ListItem>
+              <Fade top key={item.id}>
+                <ListItem {...item}>{item.label}</ListItem>
               </Fade>
             ))}
           </List>
