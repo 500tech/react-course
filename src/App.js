@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import Fade from 'react-reveal/Fade';
+import ListItem from './ListItem';
 
 class App extends Component {
   state = {
@@ -151,20 +152,4 @@ const List = styled.div`
   width: 100%;
   max-width: 400px
   margin-top: 5px;
-`;
-
-const ListItem = styled.div`
-  width: 100%;
-  margin: 5px 0;
-  height: 40px;
-  background: #fff;
-  border-radius: 5px;
-  box-sizing: border-box;
-  box-shadow: 0px 5px 16px 0px rgba(0,0,0,0.2);
-  display: flex;
-  align-items: center;
-  box-sizing: border-box;
-  padding: 0 10px;
-  font-size: 12px;
-  font-weight: 300;
 `;
