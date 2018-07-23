@@ -18,8 +18,8 @@ const Container = styled.div`
   width: 100%;
   overflow: hidden;
   top: 50%;
-  left: 50%;
-  transform: scale(0.5) translate(-100%, -100%);
+  left: 60%;
+  transform: scale(0.5) translate(0, -100%);
   
   .spinner {
     flex: 1;
