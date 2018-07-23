@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { withRouter } from 'react-router';
 import withSpinner from './withSpinner';
+import moment from 'moment';
 
 class ListItem extends React.Component {
   state = {
@@ -12,8 +13,6 @@ class ListItem extends React.Component {
     setInterval(() => {
       this.setState(prevState => ({ time: prevState.time + 1 }));
     }, 1000);
-
-    console.log(this.props);
   }
 
   render() {
@@ -23,7 +22,7 @@ class ListItem extends React.Component {
     return (
       <Row>
         <Label>{children}</Label>
-        <Time>{time}</Time>
+        <Time>{moment({ seconds: 0, minutes: 0 }).add(time, 'second').format('mm:ss')}</Time>
       </Row>
     );
   }
