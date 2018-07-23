@@ -34,8 +34,8 @@ const HeaderBg = styled.div`
   top: 0;
   left: 0;
   width: 100vw;
-  height: 500px;
-  background: #03A9F4;
+  height: 210px;
+  background: #484FFF;
 `;
 
 const InnerContainer = styled.div`
@@ -67,25 +67,45 @@ const Subtitle = styled.div`
 `;
 
 const Card = styled.div`
-  width: 600px;
-  height: 200px;
+  width: 400px;
   background: #fff;
   border-radius: 5px;
   display: flex;
   justify-content: space-between;
   box-sizing: border-box;
-  padding: 20px;
+  padding: 10px 20px;
+  margin-top: 20px;
   align-items: center;
+  box-shadow: 0px 5px 16px 0px rgba(0,0,0,0.2);
 `;
 
 const Input = styled.input`
-  border: 1px solid #444;
+  border: 1px solid #cacaca;
   background: #fff;
-  height: 40px;
+  height: 30px;
+  margin-right: 10px;
+  flex: 1;
+  border-radius: 3px;
+  box-sizing: border-box;
+  padding: 0 10px;
 `;
 
 const Button = styled.div`
   width: 100px;
-  background: blue;
+  background: #484eff;
   color: #fff;
+  height: 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 300ms;
+  
+  &:hover {
+    background: #000;
+  }
 `;
