@@ -1,13 +1,13 @@
 import React from 'react';
 
-const Item = () => (
+const Item = ({ date, label, removeItem, id }) => (
   <div className="item">
     <div className="left-area">
-      <div className="date">October 12, 2018</div>
-      <div className="label">Learn the basics of React</div>
+      <div className="date">{date}</div>
+      <div className="label">{label}</div>
 
       <div className="actions">
-        <div className="delete">delete</div>
+        <div className="delete" onClick={() => removeItem(id)}>delete</div>
         <div className="favorite">favorite</div>
       </div>
     </div>

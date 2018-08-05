@@ -1,12 +1,12 @@
 import React from 'react';
 
-const Header = () => (
+const Header = (props) => (
   <div className="header">
     <input
       className="input"
       placeholder="timer description"
     />
-    <div className="button">add new</div>
+    <div className="button" onClick={props.addItem}>add new</div>
   </div>
 );
 

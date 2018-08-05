@@ -4,17 +4,49 @@ import Navigation from './Navigation';
 import Header from './Header';
 import List from './List';
 
-const items = [
-  { id: 0, label: 'first item', date: 'october 23, 2018', isFavorite: false },
-  { id: 1, label: 'first item', date: 'october 23, 2018', isFavorite: false }
-];
+export default class App extends React.Component {
+  state = {
+    items: [
+      { id: 0, label: 'first item', date: 'october 23, 2018', isFavorite: false },
+      { id: 1, label: 'first item', date: 'october 23, 2018', isFavorite: false }
+    ]
+  };
 
-const App = () => (
-  <div className="app">
-    <Navigation />
-    <Header />
-    <List items={items} />
-  </div>
-);
+  uuid() {
+    const s4 = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
 
-export default App;
+    return `${s4()}${s4()}-${s4()}-${s4()}-${s4()}-${s4()}${s4()}${s4()}`;
+  }
+
+  addItem = () => {
+    const item = {
+      id: this.uuid(),
+      label: 'untitled',
+      date: '--/--',
+      isFavorite: false
+    };
+
+    this.setState({
+      items: this.state.items.concat(item)
+    });
+  };
+
+  removeItem = (id) => {
+    this.setState({
+      items: this.state.items.filter(item => item.id !== id)
+    });
+  };
+
+  render() {
+    return (
+      <div className="app">
+        <Navigation />
+        <Header addItem={this.addItem}/>
+        <List
+          removeItem={this.removeItem}
+          items={this.state.items}
+        />
+      </div>
+    );
+  }
+}
