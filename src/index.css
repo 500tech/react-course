@@ -149,6 +149,12 @@ body {
     font-size: 14px;
     color: #444;
     font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+
+.time svg {
+    margin-right: 10px;
 }
 
 .item {

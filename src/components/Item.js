@@ -1,4 +1,5 @@
 import React from 'react';
+import Spinner from './Spinner';
 
 const Item = ({ date, label, removeItem, id }) => (
   <div className="item">
@@ -12,7 +13,10 @@ const Item = ({ date, label, removeItem, id }) => (
       </div>
     </div>
     <div className="right-area">
-      <div className="time">12:40</div>
+      <div className="time">
+        <Spinner />
+        12:40
+      </div>
     </div>
   </div>
 );
