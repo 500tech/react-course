@@ -3,12 +3,13 @@ import React from 'react';
 import Navigation from './Navigation';
 import Header from './Header';
 import List from './List';
+import moment from 'moment';
 
 export default class App extends React.Component {
   state = {
     items: [
-      { id: 0, label: 'first item', date: 'october 23, 2018', isFavorite: false },
-      { id: 1, label: 'first item', date: 'october 23, 2018', isFavorite: false }
+      // { id: 0, label: 'first item', date: 'october 23, 2018', isFavorite: false, isRunning: false },
+      // { id: 1, label: 'first item', date: 'october 23, 2018', isFavorite: false, isRunning: false }
     ]
   };
 
@@ -22,8 +23,9 @@ export default class App extends React.Component {
     const item = {
       id: this.uuid(),
       label: 'untitled',
-      date: '--/--',
-      isFavorite: false
+      date: moment().format('MMMM DD, YYYY'),
+      isFavorite: false,
+      isRunning: true
     };
 
     this.setState({
