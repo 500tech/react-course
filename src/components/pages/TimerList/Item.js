@@ -1,7 +1,7 @@
 import React from 'react';
-import Spinner from './Spinner';
+import Spinner from '../../common/Spinner';
 import moment from 'moment';
-import Card from './common/Card';
+import Card from '../../common/Card';
 
 export default class Item extends React.Component {
   state = {

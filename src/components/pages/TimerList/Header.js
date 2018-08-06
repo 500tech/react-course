@@ -1,7 +1,8 @@
 import React from 'react';
-import Button from './common/Button';
+import Button from '../../common/Button';
+import { withRouter } from 'react-router';
 
-export default class Header extends React.Component {
+class Header extends React.Component {
   handleClick = () => {
     this.props.addItem(this.input.value);
     this.input.value = '';
@@ -20,3 +21,5 @@ export default class Header extends React.Component {
     );
   }
 }
+
+export default withRouter(Header);
