@@ -1,13 +1,25 @@
 import React from 'react';
 
-const Header = (props) => (
-  <div className="header">
-    <input
-      className="input"
-      placeholder="timer description"
-    />
-    <div className="button" onClick={props.addItem}>add new</div>
-  </div>
-);
+export default class Header extends React.Component {
+  handleClick = () => {
+    this.props.addItem(this.input.value);
+    this.input.value = '';
+  };
 
-export default Header;
+  render() {
+    return (
+      <div className="header">
+        <input
+          className="input"
+          placeholder="timer description"
+          ref={el => this.input = el}
+        />
+        <div
+          className="button"
+          onClick={this.handleClick}>
+          add new
+        </div>
+      </div>
+    );
+  }
+}

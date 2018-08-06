@@ -19,10 +19,10 @@ export default class App extends React.Component {
     return `${s4()}${s4()}-${s4()}-${s4()}-${s4()}-${s4()}${s4()}${s4()}`;
   }
 
-  addItem = () => {
+  addItem = (label) => {
     const item = {
       id: this.uuid(),
-      label: 'untitled',
+      label: label || 'untitled',
       date: moment().format('MMMM DD, YYYY'),
       isFavorite: false,
       isRunning: true
@@ -38,7 +38,6 @@ export default class App extends React.Component {
       items: this.state.items.filter(item => item.id !== id)
     });
   };
-  
 
   render() {
     return (
