@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from './common/Button';
 
 export default class Header extends React.Component {
   handleClick = () => {
@@ -14,11 +15,7 @@ export default class Header extends React.Component {
           placeholder="timer description"
           ref={el => this.input = el}
         />
-        <div
-          className="button"
-          onClick={this.handleClick}>
-          add new
-        </div>
+        <Button label="add new" onClick={this.handleClick} />
       </div>
     );
   }
