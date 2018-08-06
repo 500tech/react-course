@@ -2,18 +2,10 @@ import React, { Fragment } from 'react';
 import { render } from 'react-dom';
 import './index.css';
 
-const Item = (props) => (
-  <li className="completed">
-    <div className="view">
-      <input
-        className="toggle"
-        type="checkbox"
-        checked={props.isChecked}
-      />
-      <label>{props.label}</label>
-    </div>
-  </li>
-);
+// components
+import Item from './components/Item';
+import Footer from './components/Footer';
+import Header from './components/Header';
 
 class App extends React.Component {
   state = {
@@ -30,6 +22,15 @@ class App extends React.Component {
     return `${s4()}${s4()}-${s4()}-${s4()}-${s4()}-${s4()}${s4()}${s4()}`;
   }
 
+  toggleChecked = (id) => {
+    this.setState(prevState => ({
+      data: prevState.data.map(item => ({
+        ...item,
+        isChecked: item.id === id ? !item.isChecked : item.isChecked
+      }))
+    }));
+  };
+
   handleKeyUp = (e) => {
     if (e.which === 13) {
       this.setState({
@@ -38,8 +39,6 @@ class App extends React.Component {
           label: e.target.value,
           isChecked: false
         })
-      }, () => {
-        this.input.value = '';
       });
     }
   };
@@ -49,39 +48,16 @@ class App extends React.Component {
       <Fragment>
         <section className="todoapp">
 
-          <header className="header">
-            <h1>todos</h1>
-            <input
-              className="new-todo"
-              placeholder="What needs to be done?"
-              autoFocus
-              onKeyUp={this.handleKeyUp}
-              ref={el => this.input = el}
-            />
-          </header>
+          <Header handleKeyUp={this.handleKeyUp} />
 
           <section className="main">
             <input className="toggle-all" type="checkbox" />
             <ul className="todo-list">
-              {this.state.data.map(item => <Item key={item.id} {...item} />)}
+              {this.state.data.map(item => <Item key={item.id} {...item} toggleChecked={this.toggleChecked} />)}
             </ul>
           </section>
 
-          <footer className="footer">
-            <span className="todo-count"><strong>0</strong> item left</span>
-            <ul className="filters">
-              <li>
-                <a className="selected" href="#/">All</a>
-              </li>
-              <li>
-                <a href="#/active">Active</a>
-              </li>
-              <li>
-                <a href="#/completed">Completed</a>
-              </li>
-            </ul>
-            <button className="clear-completed">Clear completed</button>
-          </footer>
+          <Footer />
         </section>
 
         <footer className="info">
