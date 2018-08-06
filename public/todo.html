@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="todo.css">
+  <title>TodoMVC</title>
+</head>
+
+<body>
+
+<section class="todoapp">
+
+  <header class="header">
+    <h1>todos</h1>
+    <input class="new-todo" placeholder="What needs to be done?" autofocus />
+  </header>
+
+  <section class="main">
+    <input class="toggle-all" type="checkbox" />
+    <ul class="todo-list">
+
+      <li class="completed">
+        <div class="view">
+          <input class="toggle" type="checkbox" checked />
+          <label>Convert to JSX</label>
+        </div>
+      </li>
+
+      <li>
+        <div class="view">
+          <input class="toggle" type="checkbox" />
+          <label>Divide into Components</label>
+        </div>
+      </li>
+
+    </ul>
+  </section>
+
+  <footer class="footer">
+    <span class="todo-count"><strong>0</strong> item left</span>
+    <ul class="filters">
+      <li>
+        <a class="selected" href="#/">All</a>
+      </li>
+      <li>
+        <a href="#/active">Active</a>
+      </li>
+      <li>
+        <a href="#/completed">Completed</a>
+      </li>
+    </ul>
+    <button class="clear-completed">Clear completed</button>
+  </footer>
+</section>
+
+<footer class="info">
+  <p>Template by <a href="http://sindresorhus.com">Sindre Sorhus</a></p>
+  <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
+</footer>
+</body>
+
+</html>
