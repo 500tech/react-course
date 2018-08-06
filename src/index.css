@@ -173,3 +173,13 @@ body {
     border-color: #d9d9d9;
     box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.2);
 }
+
+.page {
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 40px;
+}

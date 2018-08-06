@@ -1,9 +1,12 @@
 import React from 'react';
-import Spinner from '../../common/Spinner';
 import moment from 'moment';
+import { withRouter } from 'react-router';
+
+// components
+import Spinner from '../../common/Spinner';
 import Card from '../../common/Card';
 
-export default class Item extends React.Component {
+class Item extends React.Component {
   state = {
     delta: 0
   };
@@ -24,11 +27,12 @@ export default class Item extends React.Component {
       label,
       id,
       removeItem,
-      isRunning
+      isRunning,
+      history
     } = this.props;
 
     return (
-      <Card width={600} height={100}>
+      <Card styles={{ width: 600, height: 100 }}>
         <div className="left-area">
           <div className="date">{date}</div>
           <div className="label">{label}</div>
@@ -36,6 +40,7 @@ export default class Item extends React.Component {
           <div className="actions">
             <div className="delete" onClick={() => removeItem(id)}>delete</div>
             <div className="favorite">favorite</div>
+            <div className="favorite" onClick={() => history.push(`/timers/${id}`)}>view</div>
           </div>
         </div>
         <div className="right-area">
@@ -52,3 +57,5 @@ export default class Item extends React.Component {
     );
   }
 }
+
+export default withRouter(Item);

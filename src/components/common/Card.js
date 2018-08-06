@@ -1,12 +1,9 @@
 import React from 'react';
 
-const Card = ({ children, width, height }) => (
+const Card = ({ children, styles }) => (
   <div
     className="card"
-    style={{
-      width,
-      height
-    }}
+    style={styles}
   >
     {children}
   </div>
