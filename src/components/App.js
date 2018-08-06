@@ -38,6 +38,7 @@ export default class App extends React.Component {
       items: this.state.items.filter(item => item.id !== id)
     });
   };
+  
 
   render() {
     return (
