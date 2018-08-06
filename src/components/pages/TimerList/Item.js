@@ -1,6 +1,8 @@
 import React from 'react';
 import moment from 'moment';
 import { withRouter } from 'react-router';
+import { connect } from 'react-redux';
+import { deleteTimer } from '../../../redux/actions/timer.actions';
 
 // components
 import Spinner from '../../common/Spinner';
@@ -26,7 +28,6 @@ class Item extends React.Component {
       date,
       label,
       id,
-      removeItem,
       isRunning,
       history
     } = this.props;
@@ -38,7 +39,7 @@ class Item extends React.Component {
           <div className="label">{label}</div>
 
           <div className="actions">
-            <div className="delete" onClick={() => removeItem(id)}>delete</div>
+            <div className="delete" onClick={() => this.props.deleteTimer(id)}>delete</div>
             <div className="favorite">favorite</div>
             <div className="favorite" onClick={() => history.push(`/timers/${id}`)}>view</div>
           </div>
@@ -58,4 +59,4 @@ class Item extends React.Component {
   }
 }
 
-export default withRouter(Item);
+export default withRouter(connect(null, { deleteTimer })(Item));

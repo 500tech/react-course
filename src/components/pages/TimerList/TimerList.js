@@ -1,14 +1,13 @@
 import React from 'react';
 
+import { connect } from 'react-redux';
+import { addTimer } from '../../../redux/actions/timer.actions';
+
 import Header from './Header';
 import List from './List';
 import moment from 'moment';
 
-export default class App extends React.Component {
-  state = {
-    items: []
-  };
-
+class TimerList extends React.Component {
   uuid() {
     const s4 = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
 
@@ -16,7 +15,7 @@ export default class App extends React.Component {
   }
 
   addItem = (label) => {
-    const item = {
+    const timer = {
       id: this.uuid(),
       label: label || 'untitled',
       date: moment().format('MMMM DD, YYYY'),
@@ -24,26 +23,21 @@ export default class App extends React.Component {
       isRunning: true
     };
 
-    this.setState({
-      items: this.state.items.concat(item)
-    });
-  };
-
-  removeItem = (id) => {
-    this.setState({
-      items: this.state.items.filter(item => item.id !== id)
-    });
+    this.props.addTimer(timer);
   };
 
   render() {
     return (
       <div>
-        <Header addItem={this.addItem}/>
-        <List
-          removeItem={this.removeItem}
-          items={this.state.items}
-        />
+        <Header addItem={this.addItem} />
+        <List items={this.props.timers} />
       </div>
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  timers: state.timers
+});
+
+export default connect(mapStateToProps, { addTimer })(TimerList);
