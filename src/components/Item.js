@@ -1,6 +1,7 @@
 import React from 'react';
 import Spinner from './Spinner';
 import moment from 'moment';
+import Card from './common/Card';
 
 export default class Item extends React.Component {
   state = {
@@ -27,7 +28,7 @@ export default class Item extends React.Component {
     } = this.props;
 
     return (
-      <div className="item">
+      <Card width={600} height={100}>
         <div className="left-area">
           <div className="date">{date}</div>
           <div className="label">{label}</div>
@@ -47,7 +48,7 @@ export default class Item extends React.Component {
             )
           }
         </div>
-      </div>
+      </Card>
     );
   }
 }
