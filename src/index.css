@@ -53,7 +53,7 @@ body {
     min-height: 100px;
     box-sizing: border-box;
     padding: 20px;
-    box-shadow: 0px 5px 17px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 5px 17px 0px rgba(0, 0, 0, 0.1);
     border-bottom: 1px solid #dadada;
 }
 
@@ -176,10 +176,17 @@ body {
 
 .page {
     width: 100vw;
-    min-height: 100vh;
+    min-height: calc(100vh - 60px);
     display: flex;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
     padding: 40px;
+}
+
+.card-title {
+    font-size: 24px;
+    color: #444;
+    text-transform: uppercase;
+    margin-bottom: 40px;
 }

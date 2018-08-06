@@ -10,13 +10,14 @@ export default class Login extends React.Component {
     return (
       <div className="page">
         <Card styles={{
-          width: 400,
-          height: 250,
+          minHeight: 280,
+          padding: '30px 25px',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center'
         }}>
+          <div className="card-title">login</div>
           <Input
             placeholder="email"
             styles={{ marginBottom: 20 }}
