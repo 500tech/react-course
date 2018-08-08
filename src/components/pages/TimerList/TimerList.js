@@ -1,13 +1,17 @@
 import React from 'react';
 
 import { connect } from 'react-redux';
-import { addTimer } from '../../../redux/actions/timer.actions';
+import { addTimer, fetchTimers } from '../../../redux/actions/timer.actions';
 
 import Header from './Header';
 import List from './List';
 import moment from 'moment';
 
 class TimerList extends React.Component {
+
+  componentDidMount() {
+    this.props.fetchTimers();
+  }
 
   uuid() {
     const s4 = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
@@ -41,4 +45,7 @@ const mapStateToProps = (state) => ({
   timers: state.timers
 });
 
-export default connect(mapStateToProps, { addTimer })(TimerList);
+export default connect(mapStateToProps, {
+  addTimer,
+  fetchTimers
+})(TimerList);

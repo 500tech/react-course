@@ -1,4 +1,5 @@
 import * as AT from '../action.types';
+import { values } from 'lodash';
 
 const initialState = [];
 
@@ -9,6 +10,9 @@ const timersReducer = (state = initialState, action) => {
 
     case AT.DELETE_TIMER:
       return state.filter(timer => timer.id !== action.payload.id);
+
+    case AT.FETCH_TIMERS.SUCCESS:
+      return values(action.payload);
 
     default:
       return state;

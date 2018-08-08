@@ -9,3 +9,12 @@ export const deleteTimer = (id) => ({
   type: AT.DELETE_TIMER,
   payload: { id }
 });
+
+export const fetchTimers = () => ({
+  type: AT.FIREBASE,
+  meta: {
+    method: 'once',
+    url: '/timers',
+    baseAction: AT.FETCH_TIMERS
+  }
+});
