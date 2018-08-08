@@ -27,3 +27,12 @@ export const subscribeToTimers = () => ({
     baseAction: AT.SUBSCRIBE_TIMERS
   }
 });
+
+export const fetchUsers = () => ({
+  type: AT.API_REQUEST,
+  meta: {
+    method: 'GET',
+    url: `/users`,
+    baseAction: AT.FETCH_USERS
+  }
+});
