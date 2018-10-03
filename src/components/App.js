@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
+// comps
 import Button from './common/Button';
 import Input from './common/Input';
 import List from './List';
