@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Input = (props) => (
+const Input = props => (
   <StyledInput
+    innerRef={props.onRef}
     placeholder={props.placeholder}
     onChange={props.onChange}
   />

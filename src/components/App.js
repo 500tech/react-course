@@ -12,8 +12,14 @@ export default class App extends React.Component {
       { id: '124', label: 'item 2' },
       { id: '125', label: 'item 3' },
       { id: '126', label: 'item 4' },
-    ]
+    ],
   };
+
+  uuid() {
+    const s4 = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+
+    return `${s4()}${s4()}-${s4()}-${s4()}-${s4()}-${s4()}${s4()}${s4()}`;
+  }
 
   render() {
     return (
@@ -21,16 +27,19 @@ export default class App extends React.Component {
         <Navigation>500timer</Navigation>
         <Header>
           <Input
+            onRef={(el) => this.input = el}
             placeholder="your item name"
-            onChange={e => console.log(e.target.value)}
+            onChange={e => {}}
           />
           <Button
             onClick={() => {
               this.setState({
                 data: [
                   ...this.state.data,
-                  { id: 'temp', label: 'woohoo' }
+                  { id: this.uuid(), label: this.input.value }
                 ]
+              }, () => {
+                this.input.value = '';
               });
             }}>add item</Button>
         </Header>
