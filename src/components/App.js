@@ -1,40 +1,22 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-class Checkbox extends React.Component {
-  state = {
-    checked: false
-  };
-
-  handleClick = () => {
-    const callback = () => this.props.onChange(this.state.checked);
-    this.setState(prevState =>
-      ({ checked: !prevState.checked }), callback);
-  };
-
-  render() {
-    return (
-      <input
-        type="checkbox"
-        checked={this.state.checked}
-        onClick={this.handleClick}
-      />
-    );
-  }
-}
-
-// controlled component
-// const Checkbox = props => (
-//   <input
-//     type="checkbox"
-//     checked={props.checked}
-//     onClick={props.onClick}
-//   />
-// );
+import About from './About';
+const Dashboard = () => (<h3>dashboard</h3>);
+const Home = () => (<h3>home</h3>);
+const NotFound = () => (<h3>404</h3>);
 
 export default class App extends React.Component {
   render() {
     return (
-      <Checkbox onChange={(value) => console.log({ value })} />
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/users/:id" component={About} />
+          <Route exact path="/dashboard" component={Dashboard} />
+          <Route path="*" component={NotFound} />
+        </Switch>
+      </Router>
     );
   }
 }
