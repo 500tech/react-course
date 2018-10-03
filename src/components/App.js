@@ -5,32 +5,41 @@ import Button from './common/Button';
 import Input from './common/Input';
 import List from './List';
 
-const data = [
-  { id: '123', label: 'item 1' },
-  { id: '124', label: 'item 2' },
-  { id: '125', label: 'item 3' },
-  { id: '126', label: 'item 4' },
-];
+export default class App extends React.Component {
+  state = {
+    data: [
+      { id: '123', label: 'item 1' },
+      { id: '124', label: 'item 2' },
+      { id: '125', label: 'item 3' },
+      { id: '126', label: 'item 4' },
+    ]
+  };
 
-const App = () => (
-  <Page>
-    <Navigation>500timer</Navigation>
-    <Header>
-      <Input
-        placeholder="your item name"
-        onChange={e => console.log(e.target.value)}
-      />
-      <Button
-        onClick={() => {
-          data.push({ id: '128', label: 'foo' });
-        }}>add item</Button>
-    </Header>
+  render() {
+    return (
+      <Page>
+        <Navigation>500timer</Navigation>
+        <Header>
+          <Input
+            placeholder="your item name"
+            onChange={e => console.log(e.target.value)}
+          />
+          <Button
+            onClick={() => {
+              this.setState({
+                data: [
+                  ...this.state.data,
+                  { id: 'temp', label: 'woohoo' }
+                ]
+              });
+            }}>add item</Button>
+        </Header>
 
-    <List data={data} />
-  </Page>
-);
-
-export default App;
+        <List data={this.state.data} />
+      </Page>
+    );
+  }
+}
 
 const Page = styled.div`
   width: 100vw;
