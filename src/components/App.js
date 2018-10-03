@@ -1,81 +1,40 @@
 import React from 'react';
-import styled from 'styled-components';
-// comps
-import Button from './common/Button';
-import Input from './common/Input';
-import List from './List';
 
-export default class App extends React.Component {
+class Checkbox extends React.Component {
   state = {
-    data: [
-      { id: '123', label: 'item 1' },
-      { id: '124', label: 'item 2' },
-      { id: '125', label: 'item 3' },
-      { id: '126', label: 'item 4' },
-    ],
+    checked: false
   };
 
-  uuid() {
-    const s4 = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
-
-    return `${s4()}${s4()}-${s4()}-${s4()}-${s4()}-${s4()}${s4()}${s4()}`;
-  }
+  handleClick = () => {
+    const callback = () => this.props.onChange(this.state.checked);
+    this.setState(prevState =>
+      ({ checked: !prevState.checked }), callback);
+  };
 
   render() {
     return (
-      <Page>
-        <Navigation>500timer</Navigation>
-        <Header>
-          <Input
-            onRef={(el) => this.input = el}
-            placeholder="your item name"
-            onChange={e => {}}
-          />
-          <Button
-            onClick={() => {
-              this.setState({
-                data: [
-                  ...this.state.data,
-                  { id: this.uuid(), label: this.input.value }
-                ]
-              }, () => {
-                this.input.value = '';
-              });
-            }}>add item</Button>
-        </Header>
-
-        <List data={this.state.data} />
-      </Page>
+      <input
+        type="checkbox"
+        checked={this.state.checked}
+        onClick={this.handleClick}
+      />
     );
   }
 }
 
-const Page = styled.div`
-  width: 100vw;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-`;
+// controlled component
+// const Checkbox = props => (
+//   <input
+//     type="checkbox"
+//     checked={props.checked}
+//     onClick={props.onClick}
+//   />
+// );
 
-const Navigation = styled.div`
-  width: 100vw;
-  height: 50px;
-  background: #405edc;
-  display: flex;
-  box-sizing: border-box;
-  padding: 0 50px;
-  color: #fff;
-  font-size: 12px;
-  text-transform: capitalize;
-  align-items: center;
-`;
-
-const Header = styled.div`
-  width: 100vw;
-  height: 200px;
-  background: #fafafa;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
+export default class App extends React.Component {
+  render() {
+    return (
+      <Checkbox onChange={(value) => console.log({ value })} />
+    );
+  }
+}
