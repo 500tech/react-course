@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
-  React.createElement('h3', null, 'hello React & Redux course'),
+  React.createElement('div', {}, [
+    'hello',
+    React.createElement('h3', {}, 'content')
+  ]),
   document.getElementById('root')
 );
-registerServiceWorker();
