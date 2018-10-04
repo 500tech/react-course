@@ -1,19 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { addTimer, removeTimer } from '../../redux/actions/timers.actions';
 
 // components
 import Card from '../common/Card';
 import Input from '../common/Input';
 import Timer from '../Timer';
 
-export default class Timers extends React.Component {
+class Timers extends React.Component {
   state = {
-    inputValue: '',
-    timers: [
-      { id: 0, label: 'timer 01' },
-      { id: 1, label: 'timer 02' },
-      { id: 2, label: 'timer 03' }
-    ]
+    inputValue: ''
   };
 
   uuid() {
@@ -22,30 +19,26 @@ export default class Timers extends React.Component {
     return `${s4()}${s4()}-${s4()}-${s4()}-${s4()}-${s4()}${s4()}${s4()}`;
   }
 
-  deleteTimer = id => {
-    this.setState({
-      timers: this.state.timers.filter(timer => timer.id !== id)
-    });
-  };
-
   handleKeyUp = e => {
-    const { inputValue, timers } = this.state;
+    const { inputValue } = this.state;
 
     if (e.which === 13) {
       if (inputValue !== '') {
+        this.props.addTimer({
+          id: this.uuid(),
+          label: inputValue
+        });
+
         this.setState({
-          inputValue: '',
-          timers: timers.concat({
-            id: this.uuid(),
-            label: inputValue
-          })
+          inputValue: ''
         });
       }
     }
   };
 
   render() {
-    const { inputValue, timers } = this.state;
+    const { inputValue } = this.state;
+    const { timers } = this.props;
 
     return (
       <Card>
@@ -61,7 +54,11 @@ export default class Timers extends React.Component {
         <List>
           {
             timers.map(timer => (
-              <Timer key={timer.id} {...timer} onDelete={() => this.deleteTimer(timer.id)} />
+              <Timer
+                key={timer.id}
+                {...timer}
+                onDelete={() => this.props.removeTimer(timer.id)}
+              />
             ))
           }
         </List>
@@ -70,6 +67,15 @@ export default class Timers extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  timers: state.timers
+});
+
+export default connect(mapStateToProps, {
+  addTimer,
+  removeTimer
+})(Timers);
 
 const List = styled.div`
   width: 100%;
