@@ -3,19 +3,23 @@ import styled from 'styled-components';
 
 const Input = props => (
   <StyledInput
-    innerRef={props.onRef}
-    placeholder={props.placeholder}
+    placeholder={props.placeholder || 'untitled'}
     onChange={props.onChange}
+    onKeyUp={props.onKeyUp}
+    value={props.value}
   />
 );
 
 export default Input;
 
 const StyledInput = styled.input`
-  width: 200px;
+  border: 1px solid #dadada;
+  width: 100%;
   height: 30px;
-  border: 1px solid #444;
   box-sizing: border-box;
   padding: 0 20px;
-  border-radius: 3px;
+  color: #444;
+  font-weight: 300;
+  margin-bottom: 20px;
+  border-radius: 4px;
 `;
