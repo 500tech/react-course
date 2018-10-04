@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, {css} from 'styled-components';
+import styled, { css } from 'styled-components';
 import moment from 'moment';
 import Fade from 'react-reveal/Fade';
 
@@ -21,14 +21,20 @@ export default class Timer extends React.Component {
   }
 
   render() {
-    const { id, label } = this.props;
+    const { id, label, onDelete } = this.props;
     const { time } = this.state;
 
     return (
       <Fade top>
         <Container key={id}>
-          <Label>{label}</Label>
-          <Label color="red" clickable>delete</Label>
+          <Label title={label}>{label}</Label>
+          <Label
+            color="red"
+            clickable
+            onClick={onDelete}
+          >
+            delete
+          </Label>
           <Label color="blue" clickable>show</Label>
           <Label>{time.format('mm:ss')}</Label>
         </Container>
@@ -53,6 +59,11 @@ const Container = styled.div`
 
 const Label = styled.div`
   color: ${({ color }) => color || '#444'};
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100px;
+  
   
   ${({ clickable }) => clickable && css`
     cursor: pointer;

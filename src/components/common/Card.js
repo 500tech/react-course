@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Fade from 'react-reveal/Fade';
 
 const Card = props => (
-  <Fade top>
+  <Fade cascade>
     <Container>{props.children}</Container>
   </Fade>
 );
