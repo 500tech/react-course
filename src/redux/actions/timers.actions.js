@@ -9,3 +9,13 @@ export const removeTimer = id => ({
   type: AT.REMOVE_TIMER,
   payload: { id }
 });
+
+export const fetchTimers = () => ({
+  type: AT.API_REQUEST,
+  meta: {
+    url: '/timers',
+    method: 'GET',
+    // body: {},
+    baseAction: AT.FETCH_ITEMS
+  }
+});

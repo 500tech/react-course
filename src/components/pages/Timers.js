@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { addTimer, removeTimer } from '../../redux/actions/timers.actions';
+import { addTimer, removeTimer, fetchTimers } from '../../redux/actions/timers.actions';
 
 // components
 import Card from '../common/Card';
@@ -12,6 +12,10 @@ class Timers extends React.Component {
   state = {
     inputValue: ''
   };
+
+  componentDidMount() {
+    this.props.fetchTimers();
+  }
 
   uuid() {
     const s4 = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
@@ -74,7 +78,8 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, {
   addTimer,
-  removeTimer
+  removeTimer,
+  fetchTimers
 })(Timers);
 
 const List = styled.div`
