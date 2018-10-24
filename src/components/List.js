@@ -9,8 +9,10 @@ const data = [
 const List = () => (
   <ul>
     {data.map(listItem =>
-      <ListItem key={listItem.id}
-                {...listItem} />)}
+      <ListItem
+        key={listItem.id}
+        {...listItem}
+      />)}
   </ul>
 );
 

@@ -1,5 +1,6 @@
-import React from "react";
+import React from 'react';
 
-const ListItem = props => (<li>{props.label}</li>);
+const ListItem = props =>
+  (<li>{props.label}</li>);
 
 export default ListItem;
