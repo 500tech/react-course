@@ -1,11 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import App from './components/App';
 
 ReactDOM.render(
-  React.createElement('div', {}, [
-    'hello',
-    React.createElement('h3', {}, 'content')
-  ]),
+  <App />,
   document.getElementById('root')
 );
