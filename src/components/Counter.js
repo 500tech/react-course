@@ -2,8 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { add, sub } from '../redux/actions/counter.actions';
+import { fetchItems } from '../redux/actions/items.actions';
 
 class Counter extends React.Component {
+  componentWillMount() {
+    this.props.fetchItems();
+  }
+
   render() {
     const { value, add, sub } = this.props;
 
@@ -26,7 +31,7 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { add, sub }
+  { add, sub, fetchItems }
 )(Counter);
 
 const Card = styled.div`
