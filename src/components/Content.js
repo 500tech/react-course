@@ -1,12 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+
+// import { withRouter } from 'react-router';
 
 class Content extends React.Component {
   componentDidUpdate(prevProps) {
 
     if (!this.props.token && prevProps.token) {
-      this.props.history.push('/login');
+      // this.props.history.push('/login');
+      // use the HOC!
     }
   }
 
@@ -23,6 +25,6 @@ const mapStateToProps = state => ({
   token: state.currentUser.token
 });
 
-export default withRouter(connect(
+export default connect(
   mapStateToProps
-)(Content));
+)(Content);
