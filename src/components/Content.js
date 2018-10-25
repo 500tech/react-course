@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { get } from 'lodash/fp';
 
 // import { withRouter } from 'react-router';
 
@@ -22,7 +23,7 @@ class Content extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  token: state.currentUser.token
+  token: get('currentUser.token', state)
 });
 
 export default connect(
