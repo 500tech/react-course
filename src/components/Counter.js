@@ -3,10 +3,11 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { add, sub } from '../redux/actions/counter.actions';
 import { fetchItems } from '../redux/actions/items.actions';
+// import PropTypes from 'prop-types';
 
 class Counter extends React.Component {
   componentWillMount() {
-    this.props.fetchItems();
+    // this.props.fetchItems();
   }
 
   render() {
@@ -26,7 +27,7 @@ class Counter extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  value: state.counter
+  // value: state.counter
 });
 
 export default connect(
@@ -59,3 +60,8 @@ const Button = styled.div`
   color: red;
   margin: 0 10px;
 `;
+
+// Counter.propTypes = {
+//   value: PropTypes.number.isRequired,
+//   fetchItems: PropTypes.func
+// };
