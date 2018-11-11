@@ -1,11 +1,15 @@
 import React from 'react';
 
-const List = () => {
+const List = ({ data }) => {
   return (
     <div className="list">
-      <div className="row">aaa</div>
-      <div className="row">bbb</div>
-      <div className="row">ccc</div>
+      {
+        data.map(item => (
+          <div key={item.id} className="row">
+            {item.label}
+          </div>
+        ))
+      }
     </div>
   );
 };
