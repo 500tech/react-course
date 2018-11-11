@@ -3,8 +3,25 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 
+const list = ['apples', 'eggs', 'milk'];
+const App = ({ children }) => (<div>{children}</div>);
+
+const List = ({ children }) => (<ul>{children}</ul>);
+
+const ListItem = ({ label }) => (<li>{label}</li>);
+
 ReactDOM.render(
-  React.createElement('h3', null, 'hello React and Redux course'),
+  <App>
+    <List>
+      {
+        list.map(label => (
+          <ListItem
+            key={label}
+            label={label} />
+        ))
+      }
+    </List>
+  </App>,
   document.getElementById('root')
 );
 
