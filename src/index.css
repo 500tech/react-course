@@ -57,3 +57,18 @@ body {
   padding-left: 20px;
   box-sizing: border-box;
 }
+
+.button {
+  width: 100%;
+  height: 50px;
+  margin-bottom: 10px;
+  background: purple;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 12px;
+  text-transform: uppercase;
+  transition: all 300ms;
+  cursor: pointer;
+}

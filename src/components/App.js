@@ -1,22 +1,42 @@
 import React from 'react';
-// components
+
 import List from './List';
 import Card from './Card';
 
-const data = [
-  { id: 0, label: 'aaa' },
-  { id: 1, label: 'bbb' },
-  { id: 2, label: 'ccc' }
-];
+class App extends React.Component {
+  state = {
+    data: [
+      { id: 0, label: 'aaa' },
+      { id: 1, label: 'bbb' },
+      { id: 2, label: 'ccc' }
+    ]
+  };
 
-const App = () => {
-  return (
-    <div className="page">
-      <Card title="woohoo">
-        <List data={data}/>
-      </Card>
-    </div>
+  uuid() {
+    const s4 = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+
+    return `${s4()}${s4()}-${s4()}-${s4()}-${s4()}-${s4()}${s4()}${s4()}`;
+  }
+
+  handleClick = () => this.setState({
+    data: this.state.data.concat({
+      id: this.uuid(),
+      label: 'untitled'
+    })
+  });
+
+  render() {
+    const { data } = this.state;
+
+    return (
+      <div className="page">
+        <Card title="woohoo">
+          <div onClick={this.handleClick} className="button">add</div>
+          <List data={data} />
+        </Card>
+      </div>
   );
-};
+  }
+  }
 
-export default App;
+  export default App;
