@@ -2,26 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-
-const list = ['apples', 'eggs', 'milk'];
-const App = ({ children }) => (<div>{children}</div>);
-
-const List = ({ children }) => (<ul>{children}</ul>);
-
-const ListItem = ({ label }) => (<li>{label}</li>);
+import App from './components/App';
 
 ReactDOM.render(
-  <App>
-    <List>
-      {
-        list.map(label => (
-          <ListItem
-            key={label}
-            label={label} />
-        ))
-      }
-    </List>
-  </App>,
+  <App />,
   document.getElementById('root')
 );
 
