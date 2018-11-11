@@ -58,6 +58,11 @@ body {
   box-sizing: border-box;
 }
 
+.row span {
+  color: red;
+  margin-left: 20px;
+}
+
 .button {
   width: 100%;
   height: 50px;

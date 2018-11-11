@@ -1,17 +1,26 @@
 import React from 'react';
 
-const List = ({ data }) => {
-  return (
-    <div className="list">
-      {
-        data.map(item => (
-          <div key={item.id} className="row">
-            {item.label}
-          </div>
-        ))
-      }
-    </div>
-  );
-};
+export default class List extends React.Component {
+  shouldComponentUpdate(nextProps) {
+    return this.props.data !== nextProps.data;
+  }
 
-export default List;
+  render() {
+    const { onRemove } = this.props;
+
+    return (
+      <div className="list">
+        {
+          this.props.data.map(item => (
+            <div key={item.id} className="row">
+              {item.label}
+              <span onClick={() => onRemove(item.id)}>
+                delete
+              </span>
+            </div>
+          ))
+        }
+      </div>
+    );
+  }
+}
