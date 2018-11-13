@@ -11,7 +11,8 @@ export default Button;
 
 const Container = styled.div`
   display: flex;
-  padding: 10px 20px;
+  font-size: 12px;
+  padding: 8px 20px;
   background: #3f6bff;
   align-items: center;
   justify-content: center;
@@ -19,7 +20,7 @@ const Container = styled.div`
   cursor: pointer;
   border-radius: 5px;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 600;
   transition: all 300ms;
   
   &:hover { background: #000; }

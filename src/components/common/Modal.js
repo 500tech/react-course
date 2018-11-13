@@ -46,4 +46,7 @@ const CloseIcon = styled.div`
   position: absolute;
   right: -30px;
   top: -30px;
+  cursor: pointer;
+  
+  &:hover { background: red; }
 `;

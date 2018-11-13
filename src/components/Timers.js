@@ -59,6 +59,23 @@ class Timers extends Component {
 
   toggleModal = () => this.setState(prevState => ({ modalOpen: !prevState.modalOpen }));
 
+  modalContent() {
+    const { match } = this.props;
+
+    return (
+      <span>
+        <Title dark>Modal for timer - {match.params.id}</Title>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+        when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+        It has survived not only five centuries, but also the leap into electronic typesetting,
+        remaining essentially unchanged. It was popularised in the 1960s with the release of
+        Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
+        software like Aldus PageMaker including versions of Lorem Ipsum.
+      </span>
+    );
+  }
+
   render() {
     const { data, modalOpen } = this.state;
 
@@ -67,12 +84,16 @@ class Timers extends Component {
         <Modal
           isOpen={modalOpen}
           toggleOpen={this.toggleModal}
-        />
+        >
+          {this.modalContent()}
+        </Modal>
         <Header />
+
         <Box>
           <Title>Time Tracker</Title>
           <Subtitle>{data.length} activities</Subtitle>
-          <Card>
+
+          <Card justify="space-between">
             <Input
               placeholder="timer label"
               onRef={this.handleInputRef}
@@ -118,7 +139,7 @@ const Box = styled.div`
 
 const Title = styled.div`
   font-size: 30px;
-  color: #fff;
+  color: ${({ dark }) => dark ? '#000' : '#fff'};
   font-weight: bold;
   margin-bottom: 10px;
 `;
