@@ -4,7 +4,7 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-  React.createElement('h3', null, 'hello React and Redux course'),
+  React.createElement('h3', null, 'hello Dynamic Yield!'),
   document.getElementById('root')
 );
 
