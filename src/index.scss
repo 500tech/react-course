@@ -59,7 +59,19 @@ body {
   border-radius: 5px;
   cursor: pointer;
   transition: all 300ms;
-  margin-bottom: 40px;
+  margin-bottom: 10px;
 
   &:hover { background: #000; }
+}
+
+*:focus {
+  outline: none;
+}
+
+input {
+  width: 100%;
+  height: 50px;
+  box-sizing: border-box;
+  padding: 0 20px;
+  margin-bottom: 20px;
 }
