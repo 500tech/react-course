@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import styled, { css } from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Modal = ({ isOpen, toggleOpen }) => {
   return (
@@ -14,6 +15,11 @@ const Modal = ({ isOpen, toggleOpen }) => {
       </Container>
     </Fragment>
   );
+};
+
+Modal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  toggleOpen: PropTypes.func.isRequired
 };
 
 export default Modal;
