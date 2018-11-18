@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const Input = ({ onRef, placeholder }) =>
   <StyledInput
     placeholder={placeholder}
-    innerRef={onRef}
+    ref={onRef}
   />;
 
 export default Input;
