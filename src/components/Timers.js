@@ -14,7 +14,8 @@ class Timers extends Component {
       { id: 1, label: 'timer' },
       { id: 2, label: 'timer' }
     ],
-    modalOpen: false
+    modalOpen: false,
+    isToggleActive: false
   };
 
   componentDidMount() {
@@ -76,8 +77,17 @@ class Timers extends Component {
     );
   }
 
+  toggleTimers = () => this.setState(prevState => ({ isToggleActive: !prevState.isToggleActive }));
+
+  timerRenderer(timer) {
+
+    return (
+      <div></div>
+    );
+  }
+
   render() {
-    const { data, modalOpen } = this.state;
+    const { data, modalOpen, isToggleActive } = this.state;
 
     return (
       <Page>
@@ -90,8 +100,16 @@ class Timers extends Component {
         <Header />
 
         <Box>
-          <Title>Time Tracker</Title>
-          <Subtitle>{data.length} activities</Subtitle>
+          <TopBar>
+            <Titles>
+              <Title>Time Tracker</Title>
+              <Subtitle>{data.length} activities</Subtitle>
+            </Titles>
+            <Toggle
+              active={isToggleActive}
+              onClick={this.toggleTimers}
+            />
+          </TopBar>
 
           <Card justify="space-between">
             <Input
@@ -101,13 +119,16 @@ class Timers extends Component {
             <Button onClick={this.addActivity}>add new</Button>
           </Card>
 
-          {data.map(timer =>
-            <Timer
-              key={timer.id}
-              {...timer}
-              removeTimer={this.removeActivity}
-            />
-          )}
+          <TimersContainer isGrid={isToggleActive}>
+            {data.map(timer =>
+              <Timer
+                key={timer.id}
+                {...timer}
+                removeTimer={this.removeActivity}
+                timerRenderer={this.timerRenderer}
+              />
+            )}
+          </TimersContainer>
         </Box>
       </Page>
     );
@@ -149,4 +170,27 @@ const Subtitle = styled.div`
   font-weight: 300;
   color: #fff;
   margin-bottom: 10px;
+`;
+
+const Titles = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const TopBar = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const Toggle = styled.div`
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  background: ${({ active }) => active ? '#000' : '#fff'};
+`;
+
+const TimersContainer = styled.div`
+  display: flex;
+  flex-direction: ${({ isGrid }) => isGrid ? 'row' : 'column'};
 `;
