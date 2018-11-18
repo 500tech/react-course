@@ -9,6 +9,7 @@ const App = () => (
   <Provider store={store}>
     <Router>
       <Switch>
+        <div>hello</div>
         <Route
           exact
           path="/timers/:id?"
