@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { addTimer, removeTimer } from '../redux/actions/timers.actions';
 
 import Timer from './Timer';
 import Card from './common/Card';
@@ -9,11 +11,6 @@ import Modal from './common/Modal';
 
 class Timers extends Component {
   state = {
-    data: [
-      { id: 0, label: 'timer' },
-      { id: 1, label: 'timer' },
-      { id: 2, label: 'timer' }
-    ],
     modalOpen: false,
     isToggleActive: false
   };
@@ -40,20 +37,12 @@ class Timers extends Component {
   }
 
   addActivity = () => {
-    this.setState({
-      data: [
-        ...this.state.data,
-        { id: this.uuid(), label: this.input.value || 'untitled' }
-      ]
-    }, () => {
-      this.input.value = '';
-    });
+    this.props.addTimer({ id: this.uuid(), label: this.input.value || 'untitled' });
+    this.input.value = '';
   };
 
   removeActivity = id => {
-    this.setState({
-      data: this.state.data.filter(timer => timer.id !== id)
-    });
+    this.props.removeTimer(id);
   };
 
   handleInputRef = el => this.input = el;
@@ -79,15 +68,9 @@ class Timers extends Component {
 
   toggleTimers = () => this.setState(prevState => ({ isToggleActive: !prevState.isToggleActive }));
 
-  timerRenderer(timer) {
-
-    return (
-      <div></div>
-    );
-  }
-
   render() {
-    const { data, modalOpen, isToggleActive } = this.state;
+    const { modalOpen, isToggleActive } = this.state;
+    const { data } = this.props;
 
     return (
       <Page>
@@ -135,7 +118,14 @@ class Timers extends Component {
   }
 }
 
-export default Timers;
+const mapStateToProps = state => ({
+  data: state.timers
+});
+
+export default connect(
+  mapStateToProps,
+  { addTimer, removeTimer }
+)(Timers);
 
 const Page = styled.div`
   width: 100vw;
