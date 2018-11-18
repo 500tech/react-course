@@ -5,6 +5,7 @@
   "dependencies": {
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.7.0",
+    "lodash": "^4.17.11",
     "react": "^16.6.1",
     "react-dom": "^16.6.1",
     "react-redux": "^5.1.1",
