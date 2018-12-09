@@ -3,9 +3,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 ReactDOM.render(
-  React.createElement('div', {}, [
-    'hello',
-    React.createElement('h3', {}, 'content')
-  ]),
+  React.createElement('div', {}, 'Hello Wobi'),
   document.getElementById('root')
 );
