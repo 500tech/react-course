@@ -4,11 +4,11 @@ import styled from 'styled-components';
 // components
 import Card from './common/Card';
 
-const Timer = ({label}) => {
+const Timer = ({label, removeTimer}) => {
   return (
     <Card>
       <Label>{label}</Label>
-      <Label color="red">delete</Label>
+      <Label color="red" onClick={removeTimer}>delete</Label>
     </Card>
   );
 };

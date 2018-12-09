@@ -4,11 +4,17 @@ import styled from 'styled-components';
 // components
 import Timer from './Timer';
 
-const Timers = ({ list }) => {
+const Timers = ({ list, removeTimer }) => {
   return (
     <Container>
       {
-        list.map(card => <Timer key={card.id} label={card.label} />)
+        list.map(card =>
+          <Timer
+            key={card.id}
+            label={card.label}
+            removeTimer={() => removeTimer(card.id)}
+          />
+        )
       }
     </Container>
   );

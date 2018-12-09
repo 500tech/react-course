@@ -9,6 +9,9 @@ import Timers from './Timers';
 
 
 class App extends React.Component {
+  // this.forceUpdate
+  // this.setState
+  // new props from parent
   state = {
     list: [
       { id: 0, label: 'foo' },
@@ -30,6 +33,15 @@ class App extends React.Component {
         { id: this.uuid(), label: 'untitled' }
       ]
     });
+
+    this.setState({ counter: this.state.counter + 1});
+    this.setState((prevState) => ({
+      counter: prevState.counter + 1
+    }));
+  };
+
+  removeTimer = id => {
+    this.setState({ list: this.state.list.filter(card => card.id !== id) });
   };
 
   render() {
@@ -48,7 +60,7 @@ class App extends React.Component {
             <Button onClick={this.addTimer}>add timer</Button>
           </Card>
 
-          <Timers list={list} />
+          <Timers list={list} removeTimer={this.removeTimer} />
         </Content>
 
       </StyledPage>
