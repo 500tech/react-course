@@ -10,5 +10,17 @@ const Button = props => (
 export default Button;
 
 const StyledContainer = styled.div`
-  width: 100px;
+  padding: 6px 12px;
+  background: #000;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  transition: all 300ms;
+  cursor: pointer;
+  
+  &:hover {
+    background: #444;
+  }
 `;

@@ -5,3 +5,5 @@ body {
   padding: 0;
   font-family: 'Open Sans', sans-serif;
 }
+
+*:focus { outline: none; }
