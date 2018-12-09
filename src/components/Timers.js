@@ -4,13 +4,7 @@ import styled from 'styled-components';
 // components
 import Timer from './Timer';
 
-const list = [
-  { id: 0, label: 'foo'},
-  { id: 1, label: 'foo 2'},
-  { id: 2, label: 'foo 3'},
-];
-
-const Timers = () => {
+const Timers = ({ list }) => {
   return (
     <Container>
       {

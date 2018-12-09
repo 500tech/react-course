@@ -7,26 +7,54 @@ import Card from './common/Card';
 import Input from './common/Input';
 import Timers from './Timers';
 
-const App = () => {
-  return (
-    <StyledPage>
-      <StyledHeader>
-        <StyledTitle>my timers</StyledTitle>
-        <StyledSubtitle>2 timers</StyledSubtitle>
-      </StyledHeader>
 
-      <Content>
-        <Card>
-          <Input />
-          <Button>add timer</Button>
-        </Card>
+class App extends React.Component {
+  state = {
+    list: [
+      { id: 0, label: 'foo' },
+      { id: 1, label: 'foo 2' },
+      { id: 2, label: 'foo 3' },
+    ]
+  };
 
-        <Timers />
-      </Content>
+  uuid() {
+    const s4 = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
 
-    </StyledPage>
-  );
-};
+    return `${s4()}${s4()}-${s4()}-${s4()}-${s4()}-${s4()}${s4()}${s4()}`;
+  }
+
+  addTimer = () => {
+    this.setState({
+      list: [
+        ...this.state.list,
+        { id: this.uuid(), label: 'untitled' }
+      ]
+    });
+  };
+
+  render() {
+    const { list } = this.state;
+
+    return (
+      <StyledPage>
+        <StyledHeader>
+          <StyledTitle>my timers</StyledTitle>
+          <StyledSubtitle>{list.length} timers</StyledSubtitle>
+        </StyledHeader>
+
+        <Content>
+          <Card>
+            <Input />
+            <Button onClick={this.addTimer}>add timer</Button>
+          </Card>
+
+          <Timers list={list} />
+        </Content>
+
+      </StyledPage>
+    );
+  }
+}
 
 export default App;
 
