@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import Checkbox from './common/Checkbox';
+import { withRouter } from 'react-router';
 
-const List = ({ data, updateRow }) => {
+const List = ({ data, updateRow, history }) => {
   return (
     <Container>
       {
@@ -11,7 +12,12 @@ const List = ({ data, updateRow }) => {
             <Checkbox
               checked={item.checked}
               onChange={checked => updateRow(item.id, checked)} />
-            <Label checked={item.checked}>{item.label}</Label>
+            <Label
+              checked={item.checked}
+              onClick={() => history.push(`/todos/${item.id}`)}
+            >
+              {item.label}
+            </Label>
           </Item>
         ))
       }
@@ -19,7 +25,7 @@ const List = ({ data, updateRow }) => {
   );
 };
 
-export default List;
+export default withRouter(List);
 
 const Container = styled.div`
   width: 100%;
