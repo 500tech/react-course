@@ -4,7 +4,10 @@ import styled from 'styled-components';
 const Progress = ({ margin, value }) => {
   return (
     <Outer margin={margin}>
-      <Inner value={value} />
+      <Inner
+        value={value}
+        background={value < 50 ? 'red' : 'blue'}
+      />
     </Outer>
   );
 };
@@ -28,5 +31,5 @@ const Inner = styled.div`
   transition: all 300ms;
   width: ${({ value }) => `${value}%`};
   height: 100%;
-  background: blue;
+  background: ${({ background }) => background};
 `;

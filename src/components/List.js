@@ -53,6 +53,6 @@ const Label = styled.div`
   font-size: 14px;
   font-weight: 300;
   line-height: 20px;
-  color: #444;
+  color: ${({ checked }) => checked ? '#dadada' : '#444'};
   text-decoration: ${({ checked }) => checked ? 'line-through' : 'none'};
 `;
