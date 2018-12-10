@@ -2,11 +2,21 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Progress = ({ margin, value }) => {
+  let background = 'blue';
+
+  if (value < 50) {
+    background = '#b72c2d';
+  }
+
+  if (value === 100) {
+    background = '#45b74a';
+  }
+
   return (
     <Outer margin={margin}>
       <Inner
         value={value}
-        background={value < 50 ? 'red' : 'blue'}
+        background={background}
       />
     </Outer>
   );
