@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Input = ({ margin, onKeyDown, onRef }) =>
   <StyledInput
@@ -7,6 +8,12 @@ const Input = ({ margin, onKeyDown, onRef }) =>
     margin={margin}
     onKeyDown={onKeyDown}
   />;
+
+Input.propTypes = {
+  margin: PropTypes.string,
+  onKeyDown: PropTypes.func.isRequired,
+  onRef: PropTypes.func
+};
 
 export default Input;
 
