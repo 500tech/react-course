@@ -8,6 +8,8 @@ import Card from './common/Card';
 import List from './List';
 
 export default class App extends React.Component {
+  // static propTypes = {};
+
   state = {
     data: [
       { id: 0, label: 'learn react.js', checked: true },
