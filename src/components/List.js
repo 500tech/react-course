@@ -30,11 +30,23 @@ const Container = styled.div`
 const Item = styled.div`
   width: 100%;
   display: flex;
-  min-height: 40px;
-  align-items: center;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeIn 500ms forwards;
+  margin-top: -10px;
+  
+  @keyframes fadeIn {
+    100% {
+      margin-top: 0; 
+      opacity: 1; 
+    }
+  }
 `;
 const Label = styled.div`
   font-size: 14px;
+  font-weight: 300;
+  line-height: 20px;
   color: #444;
   text-decoration: ${({ checked }) => checked ? 'line-through' : 'none'};
 `;

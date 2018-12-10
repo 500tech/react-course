@@ -14,6 +14,8 @@ export default Progress;
 const Outer = styled.div`
   width: 100%;
   height: 10px;
+  overflow: hidden;
+  border-radius: 10px;
   position: relative;
   background: #dadada;
   margin: ${({ margin }) => margin || 0};

@@ -29,17 +29,22 @@ export default Checkbox;
 
 const Outer = styled.div`
   width: 20px;
+  min-width: 20px;
+  min-height: 20px;
   height: 20px;
   display: flex;
   background: #dadada;
   align-items: center;
   justify-content: center;
   margin-right: 10px;
+  cursor: pointer;
+  border-radius: 50%;
 `;
 
 const Inner = styled.div`
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
   transition: all 300ms;
   background: ${({ checked }) => checked ? 'blue' : 'transparent'};
 `;

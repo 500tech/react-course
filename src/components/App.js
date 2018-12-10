@@ -84,7 +84,7 @@ const Container = styled.div`
 `;
 
 const Box = styled.div`
-  width: 50vw;
+  width: 30vw;
   min-height: 100px;
   display: flex;
   flex-direction: column;
@@ -94,6 +94,6 @@ const Title = styled.div`
   font-size: 30px;
   font-weight: 300;
   text-transform: capitalize;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
 `;
 
