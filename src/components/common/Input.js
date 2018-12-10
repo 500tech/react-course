@@ -2,11 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-const Input = ({ margin, onKeyDown, onRef }) =>
+const Input = props =>
   <StyledInput
-    ref={onRef}
-    margin={margin}
-    onKeyDown={onKeyDown}
+    ref={props.onRef}
+    margin={props.margin}
+    onKeyDown={props.onKeyDown}
+    placeholder={props.placeholder}
+    type={props.type || 'text'}
   />;
 
 Input.propTypes = {

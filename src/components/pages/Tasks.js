@@ -7,7 +7,7 @@ import Input from '../common/Input';
 import Card from '../common/Card';
 import List from '../List';
 
-export default class Todo extends React.Component {
+export default class Tasks extends React.Component {
   // static propTypes = {};
 
   state = {

@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Card = ({ children }) => (<Container>{children}</Container>);
+const Card = ({ children, width }) =>
+  (<Container width={width}>{children}</Container>);
 
 export default Card;
 
 const Container = styled.div`
-  width: 100%;
+  width: ${({ width }) => width || '100%'};
   min-height: 100px;
   background: #fff;
   box-shadow: 0 5px 20px rgba(0,0,0,0.2);

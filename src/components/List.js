@@ -14,7 +14,7 @@ const List = ({ data, updateRow, history }) => {
               onChange={checked => updateRow(item.id, checked)} />
             <Label
               checked={item.checked}
-              onClick={() => history.push(`/todos/${item.id}`)}
+              onClick={() => history.push(`/tasks/${item.id}`)}
             >
               {item.label}
             </Label>

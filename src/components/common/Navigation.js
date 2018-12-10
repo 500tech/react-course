@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { withRouter } from 'react-router';
 
 const links = [
-  { id: 'home', route: '/welcome', label: 'home' },
-  { id: 'todos', route: '/', label: 'todos' }
+  { id: 'login', route: '/', label: 'login' },
+  { id: 'tasks', route: '/tasks', label: 'tasks' }
 ];
 
 const Navigation = props => {
