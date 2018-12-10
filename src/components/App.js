@@ -17,7 +17,8 @@ class App extends React.Component {
       { id: 0, label: 'foo' },
       { id: 1, label: 'foo 2' },
       { id: 2, label: 'foo 3' },
-    ]
+    ],
+    inputVal: ''
   };
 
   uuid() {
@@ -27,14 +28,20 @@ class App extends React.Component {
   }
 
   addTimer = () => {
+    const { inputVal, list } = this.state;
+
+    // ref
+    // this.input / this.input.value
+
     this.setState({
       list: [
-        ...this.state.list,
-        { id: this.uuid(), label: 'untitled' }
-      ]
+        ...list,
+        { id: this.uuid(), label: inputVal }
+      ],
+      inputVal: ''
     });
 
-    this.setState({ counter: this.state.counter + 1});
+    this.setState({ counter: this.state.counter + 1 });
     this.setState((prevState) => ({
       counter: prevState.counter + 1
     }));
@@ -43,6 +50,8 @@ class App extends React.Component {
   removeTimer = id => {
     this.setState({ list: this.state.list.filter(card => card.id !== id) });
   };
+
+  handleInputRef = el => this.input = el;
 
   render() {
     const { list } = this.state;
@@ -56,7 +65,11 @@ class App extends React.Component {
 
         <Content>
           <Card>
-            <Input />
+            <Input
+              onRef={this.handleInputRef}
+              value={this.state.inputVal}
+              onChange={e => this.setState({ inputVal: e.target.value })}
+            />
             <Button onClick={this.addTimer}>add timer</Button>
           </Card>
 

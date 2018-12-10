@@ -1,22 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
+import Fade from 'react-reveal/Fade';
 
 // components
 import Timer from './Timer';
 
 const Timers = ({ list, removeTimer }) => {
   return (
-    <Container>
-      {
-        list.map(card =>
-          <Timer
-            key={card.id}
-            label={card.label}
-            removeTimer={() => removeTimer(card.id)}
-          />
-        )
-      }
-    </Container>
+    <Fade top>
+      <Container>
+        {
+          list.map(card =>
+            <Timer
+              key={card.id}
+              label={card.label}
+              removeTimer={() => removeTimer(card.id)}
+            />
+          )
+        }
+      </Container>
+    </Fade>
   );
 };
 

@@ -1,9 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
+// controlled
 const Input = props => (
   <Container
+    ref={props.onRef}
     onChange={props.onChange}
+    value={props.value}
     placeholder={props.placeholder}
   />
 );
