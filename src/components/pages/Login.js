@@ -13,11 +13,13 @@ const Login = props => {
         <Input
           margin="0 0 20px 0"
           placeholder="Email"
+          onKeyDown={() => {}}
         />
         <Input
           margin="0 0 20px 0"
           placeholder="Password"
           type="password"
+          onKeyDown={() => {}}
         />
         <Button onClick={() => props.history.push('/tasks')}>
           login
