@@ -9,8 +9,8 @@ import Navigation from './common/Navigation';
 // pages
 import Login from './pages/Login';
 import Tasks from './pages/Tasks';
-import Task from './pages/Task';
 import Counter from './pages/Counter';
+import Task from './pages/Task';
 
 const App = () => (
   <Provider store={store}>
