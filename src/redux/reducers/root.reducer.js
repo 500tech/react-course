@@ -4,11 +4,13 @@ import { combineReducers } from 'redux';
 import counter from './counter.reducer';
 import user from './user.reducer';
 import tasks from './tasks.reducer';
+import network from './network.reducer';
 
 const rootReducer = combineReducers({
   counter,
   user,
-  tasks
+  tasks,
+  network
 });
 
 export default rootReducer;

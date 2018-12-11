@@ -1,6 +1,6 @@
 import * as AT from '../action.types';
 
-const BASE_URL = 'http://wobi.co.il';
+const BASE_URL = 'http://private-fe525e-crazypixel.apiary-mock.com';
 const logMiddleware = ({ dispatch }) => next => action => {
   if (action.type !== AT.API_REQUEST) {
     return next(action);

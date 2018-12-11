@@ -1,8 +1,8 @@
 import * as AT from '../action.types';
 
 const initialState = [
-  { id: 0, label: 'learn react.js', checked: true },
-  { id: 1, label: 'learn redux', checked: false }
+  // { id: 0, label: 'learn react.js', checked: true },
+  // { id: 1, label: 'learn redux', checked: false }
 ];
 const tasksReducer = (state = initialState, action) => {
   const { payload } = action;
@@ -20,8 +20,8 @@ const tasksReducer = (state = initialState, action) => {
         checked: item.id === payload.id ? payload.checked : item.checked
       }));
 
-    // case AT.FETCH_TASKS.SUCCESS:
-    //   return action.payload;
+    case AT.FETCH_TASKS.SUCCESS:
+      return action.payload;
 
     default:
       return state;

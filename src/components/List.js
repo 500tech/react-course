@@ -2,8 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 import Checkbox from './common/Checkbox';
 import { withRouter } from 'react-router';
+import { connect } from 'react-redux';
 
-const List = ({ data, updateRow, history }) => {
+// components
+import Spinner from './common/Spinner';
+
+const List = ({ data, updateRow, history, loading }) => {
+  if (loading) {
+    return <Spinner />;
+  }
+
   return (
     <Container>
       {
@@ -25,7 +33,13 @@ const List = ({ data, updateRow, history }) => {
   );
 };
 
-export default withRouter(List);
+const mapStateToProps = state => ({
+  loading: state.network.requests
+});
+
+export default connect(
+  mapStateToProps
+)(withRouter(List));
 
 const Container = styled.div`
   width: 100%;

@@ -49,7 +49,7 @@ class Tasks extends React.Component {
         <Box>
           <Title>my tasks</Title>
           <Progress
-            value={totalChecked / data.length * 100}
+            value={totalChecked / (data.length || 1) * 100}
             margin="0 0 20px 0"
           />
           <Input
