@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { addTask, toggleTask } from '../../redux/actions/tasks.actions';
 
 // components
 import Progress from '../common/Progress';
@@ -7,24 +9,9 @@ import Input from '../common/Input';
 import Card from '../common/Card';
 import List from '../List';
 
-export default class Tasks extends React.Component {
+class Tasks extends React.Component {
   // static propTypes = {};
-
-  state = {
-    data: [
-      { id: 0, label: 'learn react.js', checked: true },
-      { id: 1, label: 'learn redux', checked: false }
-    ]
-  };
-
-  updateRow = (id, checked) => {
-    this.setState({
-      data: this.state.data.map(item => ({
-        ...item,
-        checked: item.id === id ? checked : item.checked
-      }))
-    });
-  };
+  updateRow = (id, checked) => this.props.toggleTask(id, checked);
 
   uuid() {
     const s4 = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
@@ -34,25 +21,23 @@ export default class Tasks extends React.Component {
 
   handleKeyDown = e => {
     if (e.which === 13) {
-      this.setState({
-        data: [
-          ...this.state.data,
-          {
-            id: this.uuid(),
-            label: e.target.value,
-            checked: false
-          }
-        ]
-      }, () => {
-        this.input.value = '';
-      });
+      const task = {
+        id: this.uuid(),
+        label: e.target.value,
+        checked: false
+      };
+
+      // dispatch redux action
+      this.props.addTask(task);
+
+      this.input.value = '';
     }
   };
 
   handleRef = el => this.input = el;
 
   render() {
-    const { data } = this.state;
+    const { data } = this.props;
     const totalChecked = data.filter(item => item.checked).length;
 
     return (
@@ -76,6 +61,15 @@ export default class Tasks extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  data: state.tasks
+});
+
+export default connect(
+  mapStateToProps,
+  { addTask, toggleTask }
+)(Tasks);
 
 const Container = styled.div`
   width: 100vw;
