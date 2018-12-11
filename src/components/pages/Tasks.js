@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { addTask, toggleTask } from '../../redux/actions/tasks.actions';
+import { addTask, toggleTask, fetchTasks } from '../../redux/actions/tasks.actions';
 
 // components
 import Progress from '../common/Progress';
@@ -10,6 +10,10 @@ import Card from '../common/Card';
 import List from '../List';
 
 class Tasks extends React.Component {
+  componentDidMount() {
+    this.props.fetchTasks();
+  }
+
   // static propTypes = {};
   updateRow = (id, checked) => this.props.toggleTask(id, checked);
 
@@ -68,7 +72,7 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { addTask, toggleTask }
+  { addTask, toggleTask, fetchTasks }
 )(Tasks);
 
 const Container = styled.div`

@@ -9,3 +9,12 @@ export const toggleTask = (id, checked) => ({
   type: AT.TOGGLE_TASK,
   payload: { id, checked }
 });
+
+export const fetchTasks = () => ({
+  type: AT.API_REQUEST,
+  payload: {
+    url: '/tasks',
+    method: 'GET',
+    baseAction: AT.FETCH_TASKS
+  }
+});
