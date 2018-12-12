@@ -5,14 +5,14 @@
   "devDependencies": {
     "deep-freeze": "^0.0.1",
     "enzyme": "^2.8.2",
-    "react-scripts": "1.0.7",
+    "react-scripts": "^2.1.1",
     "react-test-renderer": "^15.6.1"
   },
   "dependencies": {
     "classnames": "^2.2.5",
-    "prop-types": "^15.5.10",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
+    "prop-types": "^15.6.2",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
     "react-redux": "^5.0.5",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
@@ -23,5 +23,11 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
