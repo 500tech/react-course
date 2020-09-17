@@ -12,11 +12,7 @@ const RecipesView = () => (
     </div>
 
     <div className="pane">
-      <Switch>
-        <Route exact path="/" render={ () => <h3>Welcome</h3> }/>
-        <Route path='/add' component={ AddRecipe }/>
-        <Route path='/recipe/:id' component={ RecipeDetails }/>
-      </Switch>
+      <AddRecipe />
     </div>
 
   </div>
